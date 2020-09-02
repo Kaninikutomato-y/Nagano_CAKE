@@ -1,5 +1,6 @@
 class ClientsController < ApplicationController
   def show
+    @client = Client.find(params[:id])
   end
 
   def edit
@@ -10,6 +11,11 @@ class ClientsController < ApplicationController
   end
 
   def unsubscribe
+    @client = Client.find(params[:id])
+    if request.patch?
+      @client.update(is_deleted: true)
+      redirect_to root_path
+    end
   end
 
   private
