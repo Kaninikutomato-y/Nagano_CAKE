@@ -1,1 +1,10 @@
-<%= content_for?(:content) ? yield(:content) : yield %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>namespace - admin</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <%= content_for?(:content) ? yield(:content) : yield %>
+</html>
