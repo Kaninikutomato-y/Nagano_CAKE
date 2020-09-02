@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :clients
   devise_for :admins
+  
 
   resources :clients, only: [:show, :edit, :update] do
   	member do
