@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
 		      :first_name_kana,
 		      :email,
 		      :postcode,
-		      :address
+		      :address,
+		      :phone_number
 		    ])
 
 		    devise_parameter_sanitizer.permit(:account_update, keys: [
@@ -20,7 +21,8 @@ class ApplicationController < ActionController::Base
 		      :first_name_kana,
 		      :email,
 		      :postcode,
-		      :address
+		      :address,
+		      :phone_number
 		    ])
 		end
 end

@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   	get 'home/top'
   	root 'home#top'
   	get 'home/about'
-  	resources :orders, only: [:new, :create]
+  	resources :orders, only: [:new, :create, :index, :show]
   	post 'orders/confirm'
   	get 'orders/thanks'
   end

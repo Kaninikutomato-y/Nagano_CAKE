@@ -10,4 +10,10 @@ class Client::OrdersController < ApplicationController
 
   def thanks
   end
+
+  def index
+  end
+
+  def show
+  end
 end
