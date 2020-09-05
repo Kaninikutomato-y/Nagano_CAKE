@@ -1,2 +1,31 @@
-<h1>Admin::Genres#index</h1>
-<p>Find me in app/views/admin/genres/index.html.erb</p>
+<h4>ジャンル一覧・追加</h4>
+<%= form_for @genre,:url => {controller: "genres", action: "create"} do |f| %>
+  <div class="field">
+    <%= f.label :ジャンル %>
+    <%= f.text_field :name %>
+    <%= f.radio_button :valid_flag, "true" %>有効
+    <%= f.radio_button :valid_flag, "false", :checked=>'checked' %>無効
+    <%= f.submit '追加', class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<table>
+  <thead>
+    <tr bgcolor="gray">
+      <th>ジャンル</th>
+      <th>状態</th>
+      <th colspan=""></th>
+    </tr>
+  </thead>
+    <% @genres.each do |genre| %>
+    <tbody>
+      <tr>
+        <th><%= genre.name %></th>
+        <th><% if genre.valid_flag == true %>有効
+            <% else %>無効
+            <% end %></th>
+        <th><%= link_to "編集する", edit_admin_genre_path(genre), class: "btn btn-primary"  %>
+      </tr>
+    </tbody>
+    <% end %>
+</table>
