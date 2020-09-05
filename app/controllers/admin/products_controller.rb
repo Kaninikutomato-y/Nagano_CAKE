@@ -1,8 +1,13 @@
 class Admin::ProductsController < ApplicationController
   def new
+    @product = Product.new
   end
 
   def create
+    @product = Product.new(product_params)
+    if @product.save
+      redirect_to prudct_path(@product)
+    end
   end
 
   def edit
@@ -12,6 +17,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def show
+
   end
 
   def index

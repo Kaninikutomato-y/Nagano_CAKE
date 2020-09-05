@@ -3,5 +3,6 @@ class Client::ProductsController < ApplicationController
   end
 
   def show
+  	@admin.product = Product.find(params[:id])
   end
 end
