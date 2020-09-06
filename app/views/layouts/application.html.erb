@@ -1,15 +1,61 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>namespace - admin</title>
+    <title>Nagano-CAKE</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+
   <body>
   	<header>
-  		<div><%= link_to "ログアウト", destroy_client_session_path, method: :delete %></div>
-  	</header><!-- /header -->
-  	<%= content_for?(:content) ? yield(:content) : yield %>
+  	    <div class="container">
+	  	  	<div class="row">
+	  	  	  <div class="col-xs-5 col-xs-offset-4">
+		        <%= image_tag('NCL-color.png', style: "width: 280px; height: 90px;") %>
+		      </div>
+		    </div>
+		</div>
+	</header>
+
+    <nav class="navbar navbar-inverse navbar-static-top">
+      <ul class="nav navbar-nav">
+            <% if client_signed_in? %>
+              <li class="nav-list-item"><%= link_to ' マイページ', "#", class: 'glyphicon glyphicon-user user' %></li>
+              <li class="nav-list-item"><%= link_to ' 商品一覧', "#", class: 'glyphicon glyphicon-th index' %></li>
+              <li class="navbar-text"> ようこそ ゲスト さん! </li>
+              <li class="nav-list-item"><%= link_to ' カート', "#", class: 'glyphicon glyphicon-shopping-cart cart' %></li>
+              <li class="nav-list-item"><%= link_to '　ログアウト', "#", class: 'glyphicon glyphicon-log-out logout' %></li>
+              <!--<li><%= link_to 'ログアウト', destroy_client_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout' %></li>-->
+
+            <% elsif admin_signed_in? %>
+              <li class="nav-list-item"><%= link_to ' 商品一覧', "#", class: 'glyphicon glyphicon-th index' %></li>
+              <li class="nav-list-item"><%= link_to ' 会員一覧', "#", class: 'glyphicon glyphicon-th index' %></li>
+              <li class="nav-list-item"><%= link_to ' 注文履歴一覧', "#", class: 'glyphicon glyphicon-th index' %></li>
+              <li class="nav-list-item"><%= link_to ' ジャンル一覧', "#", class: 'glyphicon glyphicon-th index' %></li>
+              <li class="nav-list-item"><%= link_to ' ログアウト', "#", class: 'glyphicon glyphicon-log-out logout' %></li>
+              <!--<li><%= link_to 'ログアウト', destroy_client_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout' %></li>-->
+              <li class="nav-list-item"><%= link_to ' 検索', "#" %></li>
+
+            <% else %>
+              <li class="nav-list-item"><%= link_to ' About', "#", class: 'glyphicon glyphicon-link about' %></li>
+              <li class="nav-list-item"><%= link_to ' 商品一覧', "#", class: 'glyphicon glyphicon-th index' %></li>
+              <li class="nav-list-item"><%= link_to ' 新規登録', "#", class: 'glyphicon glyphicon-edit sign_up' %></li>
+              <li class="nav-list-item"><%= link_to ' ログイン', "#", class: 'glyphicon glyphicon-log-in sign_in' %></li>
+            <% end %>
+      </ul>
+    </nav>
+
+
+  	<div class="container">
+  	  <%= content_for?(:content) ? yield(:content) : yield %>
+  	</div>
+
+    <div class="box4">
+	  	<footer style="background-color: #f0f0f4;">
+	            <p>©︎ Kaninikutomato.inc</p>
+	    </footer>
+	</div>
+
   </body>
 </html>
