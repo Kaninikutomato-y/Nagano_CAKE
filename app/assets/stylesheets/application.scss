@@ -16,3 +16,45 @@
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+
+
+/* 中央揃えのコード */
+.navbar-nav {
+    margin: 0 auto;
+    display: table;
+    table-layout: fixed;
+    float: none;
+}
+
+.navbar-inverse {
+	height: 50px;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.nav-list-item {
+	margin-right: 50px
+}
+
+.navbar-text {
+	margin-right: 50px;
+	margin-top: 17px;
+}
+
+body {
+	margin-top: 10px;
+}
+
+.box4{
+    margin: 2em 0;
+    color: #2c2c2f;
+    background: #f0f0f4;
+    border-top: solid 4px #be002f;
+    border-bottom: solid 4px #be002f;
+}
+
+footer p {
+    text-align: center;
+	margin-top: 10px;
+}
