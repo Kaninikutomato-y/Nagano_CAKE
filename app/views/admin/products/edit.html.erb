@@ -1,8 +1,13 @@
 <h2>商品編集</h2>
 <%= form_for @product,:url => {controller: "products", action: "update"} do |f| %>
-  <div class="field">
-      <%= f.attachment_field :image %>
+
+  <img id="img_prev" width=320 height=180 src="#" class='hidden' />
+  <%= attachment_image_tag @product, :image, fallback: "noimage.jpg", size:"320x180", class: 'default_img' %>
+
+  <div class="attachment_field">
+    <%= f.attachment_field :image, :id => 'post_img' %>
   </div>
+
   <div class="field">
       <%= f.label :商品名 %>
       <%= f.text_field :name %>
@@ -27,3 +32,24 @@
       <%= f.submit "変更を保存", class: "btn btn-primary" %>
   </div>
   <% end %>
+
+<%# ここから画像プレビュー機能(jquery) %>
+<script>
+  $( document ).on('turbolinks:load', function() {
+    function readfile(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#img_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    $("#post_img").change(function(){
+      $('#img_prev').removeClass('hidden');
+      $('.default_img').remove();
+      readfile(this);
+    });
+  });
+</script>
+<%# ここまで画像プレビュー機能(jquery) %>
