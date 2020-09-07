@@ -34,7 +34,8 @@
 }
 
 .nav-list-item {
-	margin-right: 50px
+	margin-right: 50px;
+    text-align: center;
 }
 
 .navbar-text {
@@ -57,4 +58,8 @@ body {
 footer p {
     text-align: center;
 	margin-top: 10px;
+}
+
+.input-group {
+    margin-top: 10px;
 }
