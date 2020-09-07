@@ -1,4 +1,4 @@
-class ClientsController < ApplicationController
+class Admin::ClientsController < ApplicationController
   def show
     @client = Client.find(params[:id])
   end
@@ -18,6 +18,9 @@ class ClientsController < ApplicationController
       @client.update(is_deleted: true)
       redirect_to root_path
     end
+  end
+
+  def index
   end
 
   private

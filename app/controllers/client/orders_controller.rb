@@ -13,17 +13,66 @@ class Client::OrdersController < ApplicationController
 
       @add = params[:order][:add].to_i
       case @add
-      when 1
-        @order.postcode = @client.postcode
-        @order.address = @client.address
-        @order.name = "#{client.last_name} #{client.first_name}"
-      when 2
-        @order.postcode = params[:order][:postcode]
-        @order.address = params[:order][:address]
-        @order.name = params[:order][:name]
+        when 1
+          @order.postcode = @client.postcode
+          @order.address = @client.address
+          @order.name = "#{@client.last_name} #{@client.first_name}"
+        when 2
+          @order.postcode = params[:order][:postcode]
+          @order.address = params[:order][:address]
+          @order.name = params[:order][:name]
+        when 3
+          @order.postcode = params[:order][:postcode]
+          @order.address = params[:order][:address]
+          @order.name = params[:order][:name]
+      end
+      @order.save
+
+      if Delivery.find_by(address: @order.address).nil?
+        @delivery = Delivery.new
+        @delivery.postcode = @order.postcode
+        @delivery.address = @order.address
+        @delivery.name = @order.name
+        @delivery.client_id = current_client.id
+        @delivery.save
+      end
+
+      current_customer.cart_items.each do |cart_item|
+        order_item = @order.order_items.build
+        order_item.order_id = @order.id
+        order_item.product_id = cart_item.product_id
+        order_item.quantitiy = cart_item.quantity
+        order_item.price = cart_item.product.price
+        order_item.save
+        cart_item.destroy
+      end
+      render :thanks
+    else
+      redirect_to root_path
+    end
   end
 
   def confirm
+    @order = Order.new
+    @order_items = current_client.cart_items
+    @order.pay_method = params[:order][:pay_method]
+    @add = params[:order][:add].to_i
+    case @add
+      when 1
+        @order.postcode = @client.postcode
+        @order.address = @client.address
+        @order.name = "#{@client.last_name} #{@client.first_name}"
+      when 2
+        @address = params[:order][:address].to_i
+        @delivery = Delivery.find(@address)
+        @order.postcode = @delivery.postcode
+        @order.address = @delivery.address
+        @order.name = @delivery.name
+      when 3
+        @order.postcode = params[:order][:new_add][:post_code]
+        @order.address = params[:order][:new_add][:address]
+        @order.name = params[:order][:new_add][:name]
+    end
   end
 
   def thanks
@@ -34,6 +83,10 @@ class Client::OrdersController < ApplicationController
   end
 
   def show
+    @order = Order.find(params[:id])
+    if @order.client_id != current_client.id
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   private
@@ -44,6 +97,7 @@ class Client::OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(
-      :created_at, :address, :name, :status, :pay_method, :postcode, :freight,)
-
+      :created_at, :address, :name, :status, :pay_method, :postcode, :freight,
+      order_items_attributes: [:order_id, :product_id, :quantity, :price, :production_status])
+  end
 end
