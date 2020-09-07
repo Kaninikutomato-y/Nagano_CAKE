@@ -1,7 +1,8 @@
 <h4>注文情報確認</h4>
 
 <%= form_with(model: @order, local: true) do |f| %>
-	<table>
+<div class="row">
+	<table border="1" class="col-lg-8">
 		<thead>
 			<tr>
 				<th>商品名</th>
@@ -11,17 +12,52 @@
 			</tr>
 		</thead>
 		<tbody>
+			<% sum_all = 0 %>
+			<% @cart_items.each do |cart_item| %>
+				<tr>
+					<td>
+						<%= link_to product_path(cart_item.product) do %>
+							<%= attachment_image_tag(cart_item.product, :image, :fill, 100, 100, fallback: "no_img.jpg") %>
+							<%= cart_item.product.name %>
+						<% end %>
+					</td>
+					<td><%= cart_item.quantity %></td>
+					<td><%= price_include_tax(cart_item.product.price) %></td>
+					<td>
+						<%= sum_product = price_include_tax(cart_item.product.price).to_i * cart_item.quantity %>円
+						<% sum_all += sum_product %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<div class= "col-lg-1">
+		
+	</div>
+	<table border="1" class="col-lg-3">
+		<tbody>
 			<tr>
-				<td>data</td>
+				<td>送料</td>
+				<td><%= @order.freight.to_i %>円</td>
+			</tr>
+			<tr>
+				<td>商品合計</td>
+				<td><%= sum_all.to_i %>円</td>
+			</tr>
+			<tr>
+				<td>請求金額</td>
+				<% billed_amount = sum_all + @order.freight.to_i %>
+				<td><%= billed_amount.to_i %>円</td>
 			</tr>
 		</tbody>
 	</table>
+</div>
 	<strong>支払方法</strong>
 		<p><%= @order.pay_method %></p>
 	<strong>お届け先</strong>
-		<p><%= @order.postcode %></p>
-		<p><%= @order.address %></p>
-		<p><%= @order.name %></p>
+		<p><%= @order.postcode %>
+		<%= @order.address %><br>
+		<%= @order.name %></p>
 
 	<%= f.submit "購入を確定する", class: "btn btn-success" %>
 

@@ -23,7 +23,7 @@
 
 		<div>
 			<label><%= f.radio_button :add, 2, style: "display: inline-block" %>登録済住所から選択</label><br>
-			<%= f.collection_select :address, @client.deliveries, :id, :address %>
+			<%= f.collection_select :address, @client.deliveries, :id, :postcode_address_name %>
 		</div>
 
 		<div>

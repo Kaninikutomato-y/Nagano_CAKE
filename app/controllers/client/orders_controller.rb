@@ -54,7 +54,7 @@ class Client::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new
-    @order_items = current_client.cart_items
+    @cart_items = current_client.cart_items
     @order.pay_method = params[:order][:pay_method]
     @add = params[:order][:add].to_i
     case @add
