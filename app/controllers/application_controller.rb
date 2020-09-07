@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
 	before_action :configure_permitted_parameters, if: :devise_controller?
+    helper_method :current_cart_item
+
 
 	protected
 		def configure_permitted_parameters
@@ -25,4 +27,5 @@ class ApplicationController < ActionController::Base
 		      :phone_number
 		    ])
 		end
+
 end

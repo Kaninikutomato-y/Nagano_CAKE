@@ -12,12 +12,13 @@
 			<th colspan=""></th>
 		</tr>
 	</thead>
-	<% @cart_items.each do |cart_item|%>
+
+	<% @cart_items.each do |cart_item| %>
 	<tbody>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td><%= cart_item.product.name %></td>
+			<td><%= cart_item.product.price %></td>
+			<td><%= cart_item.quantity %></td>
 			<td></td>
 			<td><%= link_to '削除' %></td>
 

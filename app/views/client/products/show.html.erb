@@ -1,4 +1,14 @@
-<h1>商品詳細（仮）<h2>
-	<%= @product.name %>
-	<%= @product.price %>
-	
+
+<h2>商品詳細(会員側)</h2>
+<div><%= attachment_image_tag @product, :image ,style: "width: 160px; height: 90px;" %></div>
+<div><%= @product.name %></div>
+<div><%= @product.explanation %></div>
+<div>¥<%= @product.price * 1.1 %>(税込)</div>
+
+
+<%= form_with(model: [@product, @cart_item], local: true, url:{controller: 'cart_items', action: 'create'}) do |f|%>
+  <%= f.label :個数　%>
+  <%= f.number_field :quantity, value: 1 ,min:1, max:99 %>
+  <%= f.hidden_field :product_id, value: @product.id %>
+  <%= f.submit "カートに入れる", class: "btn btn-primary" %>
+ <% end %>
