@@ -15,7 +15,7 @@
     </tr>
     <tr>
       <td>税込価格(税抜価格)</td>
-      <td><%= @product.price * 1.1 %>(<%= @product.price %>)円</td>
+      <td><%= @product.price.to_s(:delimited) * 1.1 %>(<%= @product.price.to_s(:delimited) %>)円</td>
     </tr>
     <tr>
       <td>販売ステータス</td>
