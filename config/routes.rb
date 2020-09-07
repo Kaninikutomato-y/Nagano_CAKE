@@ -39,25 +39,14 @@ Rails.application.routes.draw do
   	root 'home#top'
   	get 'home/about'
   	resources :orders, only: [:new, :create, :index, :show]
-<<<<<<< HEAD
   	post 'orders/confirm'
   	get 'orders/thanks'
     get 'products/search/:id' => 'products#search', as: 'products_search'
-  end
-
-  resources :clients, only: [:show, :edit, :update] do
-    member do
-      get "unsubscribe"
-      patch "unsubscribe"
-=======
-    post 'orders/confirm'
-    get 'orders/thanks'
     resources :clients, only: [:show, :edit, :update] do
       member do
         get "unsubscribe"
         patch "unsubscribe"
       end
->>>>>>> 4fd51251f03fc0a7dc069a958aa3915eb43192fb
     end
   end
 
