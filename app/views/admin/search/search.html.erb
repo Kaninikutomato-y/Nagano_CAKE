@@ -1,0 +1,52 @@
+<h2>検索結果</h2>
+
+<% if @model == 'client' %>
+  <table border="1">
+    <thead>
+      <tr bgcolor="gray">
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <% @client.each do |client| %>
+      <tbody>
+        <tr>
+          <td><%= client.id %></td>
+          <td><%= link_to client.last_name, admin_client_path(client) %><%= client.first_name %></td>
+          <td><%= client.email %></td>
+          <td><% if client.is_deleted == true %>有効
+              <% else %>退会済み
+              <% end %>
+          </td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+<% else @model == 'product' %>
+  <table>
+    <thead>
+      <tr>
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>税抜価格</th>
+        <th>ジャンル</th>
+        <th>販売ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @product.each do |product| %>
+        <tr>
+          <td><%= product.id %></td>
+          <td><%= link_to  product.name, admin_product_path(product) %></td>
+          <td><%= product.price.to_s(:delimited) %></td>
+          <td><%= product.genre.name %></td>
+          <td><% if product.sale_status == true %>販売中
+              <% else %>売り切れ
+              <% end %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
