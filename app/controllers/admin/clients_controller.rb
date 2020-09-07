@@ -10,22 +10,16 @@ class Admin::ClientsController < ApplicationController
   def update
     @client = Client.find(params[:id])
     @client.update(client_params)
-  end
-
-  def unsubscribe
-    @client = Client.find(params[:id])
-    if request.patch?
-      @client.update(is_deleted: true)
-      redirect_to root_path
-    end
+    redirect_to admin_clients_path
   end
 
   def index
+    @clients = Client.all
   end
 
   private
     def client_params
       params.require(:client).permit(
-        :last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postcode, :address, :phone_number)
+        :last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postcode, :address, :phone_number, :is_deleted)
     end
 end
