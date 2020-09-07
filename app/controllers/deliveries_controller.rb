@@ -7,6 +7,7 @@ class DeliveriesController < ApplicationController
   def create
     @delivery = Delivery.new(delivery_params)
     @delivery.save
+    redirect_to deliveries_path
   end
 
   def edit
@@ -25,6 +26,7 @@ class DeliveriesController < ApplicationController
 
   private
   def delivery_params
-    params.require(:delivery).permit(:postcode, :address, :name)
+    params.require(:delivery).permit(:postcode, :address, :name).merge(client_id: current_client.id)
   end
 end
+

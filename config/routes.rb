@@ -20,6 +20,12 @@ Rails.application.routes.draw do
   	resources :orders, only: [:update, :index, :show]
   	resources :order_items, only: [:update]
   	resources :genres, only: [:index, :create, :edit, :update]
+    resources :clients, only: [:show, :edit, :update, :index] do
+      member do
+        get "unsubscribe"
+        patch "unsubscribe"
+      end
+    end
   end
 
   scope module: :client do
@@ -33,6 +39,7 @@ Rails.application.routes.draw do
   	root 'home#top'
   	get 'home/about'
   	resources :orders, only: [:new, :create, :index, :show]
+<<<<<<< HEAD
   	post 'orders/confirm'
   	get 'orders/thanks'
     get 'products/search/:id' => 'products#search', as: 'products_search'
@@ -42,7 +49,17 @@ Rails.application.routes.draw do
     member do
       get "unsubscribe"
       patch "unsubscribe"
+=======
+    post 'orders/confirm'
+    get 'orders/thanks'
+    resources :clients, only: [:show, :edit, :update] do
+      member do
+        get "unsubscribe"
+        patch "unsubscribe"
+      end
+>>>>>>> 4fd51251f03fc0a7dc069a958aa3915eb43192fb
     end
   end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
