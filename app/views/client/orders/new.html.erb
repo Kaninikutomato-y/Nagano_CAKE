@@ -5,10 +5,10 @@
 	<div class="field">
 		<%= f.label :支払方法 %><br>
 		<label class="" style="width:50%">
-        	<%= f.radio_button :pay_method, true, {checked: true} %> クレジットカード
+        	<%= f.radio_button :pay_method, :クレジットカード, checked: "checked" %> クレジットカード
       	</label>
       	<label class="" style="width:50%">
-        	<%= f.radio_button :pay_method, false, {} %> 銀行振込
+        	<%= f.radio_button :pay_method, :銀行振込 %> 銀行振込
         </label>
 	</div>
 
