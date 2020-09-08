@@ -7,6 +7,7 @@ class Admin::ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.save
     redirect_to admin_product_path(@product)
+
   end
 
   def edit
