@@ -4,7 +4,7 @@ class Product < ApplicationRecord
 	has_many :cart_items
   attachment :image
 
-  def self.search(search, word)
+  def self.search(search,word)
   	if search == "forward_match"
   		@product = Product.where("name LIKE?","#{word}%")
   	elsif search == "backward_match"
