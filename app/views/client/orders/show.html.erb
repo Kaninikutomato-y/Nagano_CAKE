@@ -1,1 +1,90 @@
-show
+<h4>注文履歴詳細</h4>
+<div class="row">
+	<div class="col-lg-8">
+		<strong>注文情報</strong>
+		<table border="1">
+			<tbody>
+				<tr>
+					<td>注文日</td>
+					<td><%= @order.created_at %></td>
+				</tr>
+				<tr>
+					<td>配送先</td>
+					<td>
+						<%= @order.postcode %><br>
+						<%= @order.address %><br>
+						<%= @order.name %>
+					</td>
+				</tr>
+				<tr>
+					<td>支払方法</td>
+					<td><%= @order.pay_method %></td>
+				</tr>
+				<tr>
+					<td>ステータス</td>
+					<td><%= @order.ststus %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-lg-1">
+			
+	</div>
+	<div class="col-lg-3">
+		<strong>請求情報</strong>
+		<table border="1">
+			<tbody>
+				<tr>
+					<% sum_all = 0 %>
+					<td>送料</td>
+					<td><%= @order.freight.to_i %>円</td>
+				</tr>
+				<tr>
+					<td>商品合計</td>
+					<td>
+						<% sum_product = price_include_tax(cart_item.product.price).to_i * cart_item.quantity %>
+						<% sum_all += sum_product %>
+						<%= sum_all.to_i %>円
+					</td>
+				</tr>
+				<tr>
+					<td>請求金額</td>
+					<% billed_amount = sum_all + @order.freight.to_i %>
+					<td><%= billed_amount.to_i %>円</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-8">
+		<table border="1" class="col-lg-8">
+			<thead>
+				<tr>
+					<th>商品名</th>
+					<th>単価(税込)</th>
+					<th>数量</th>
+					<th>小計</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% sum_all = 0 %>
+				<% @order.order_items.each do |order_item| %>
+					<tr>
+						<td>
+							<%= link_to product_path(order_item.product) do %>
+								<%= order_item.product.name %>
+							<% end %>
+						</td>
+						<td><%= price_include_tax(order_item.product.price) %></td>
+						<td><%= order_item.quantity %></td>
+						<td>
+							<%= sum_product = price_include_tax(order_item.product.price).to_i * order_item.quantity %>円
+							<% sum_all += sum_product %>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

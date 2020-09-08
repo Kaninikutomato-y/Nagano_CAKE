@@ -4,4 +4,7 @@ class Delivery < ApplicationRecord
 
 	belongs_to :client
 
+	def postcode_address_name
+		self.postcode +  " " + self.address + " " + self.name
+	end
 end
