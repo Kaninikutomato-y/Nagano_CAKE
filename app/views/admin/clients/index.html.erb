@@ -13,12 +13,13 @@
 		<tbody>
 			<tr>
 				<td><%= client.id %></td>
-				<td><%= link_to client.last_name, admin_client_path(client) %><%= client.first_name %></td>
+				<td><%= link_to admin_client_path(client) do %>
+						<%= client.last_name %><%= client.first_name %>
+						<% end %></td>
 				<td><%= client.email %></td>
 				<td><% if client.is_deleted == true %>有効
-	                <% else %>退会済み
-	                <% end %>
-				</td>
+						<% else %>退会済み
+						<% end %></td>
 			</tr>
 		</tbody>
 	<% end %>
