@@ -21,8 +21,8 @@
 							<%= cart_item.product.name %>
 						<% end %>
 					</td>
-					<td><%= cart_item.quantity %></td>
 					<td><%= price_include_tax(cart_item.product.price) %></td>
+					<td><%= cart_item.quantity %></td>
 					<td>
 						<%= sum_product = price_include_tax(cart_item.product.price).to_i * cart_item.quantity %>円
 						<% sum_all += sum_product %>

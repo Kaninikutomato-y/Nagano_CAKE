@@ -98,6 +98,7 @@ class Client::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(
       :created_at, :address, :name, :status, :pay_method, :postcode, :freight,
-      order_items_attributes: [:order_id, :product_id, :quantity, :price, :production_status])
+      order_items_attributes: [:order_id, :product_id, :quantity, :price, :production_status]
+      )
   end
 end
