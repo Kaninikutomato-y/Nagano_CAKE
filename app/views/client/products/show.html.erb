@@ -6,6 +6,7 @@
 <div>¥<%= @product.price * 1.1 %>(税込)</div>
 
 
+
 <%= form_with(model: [@cart_item], local: true, url:cart_items_path ) do |f| %>
   <%= f.label :個数　%>
   <%= f.number_field :quantity, value: 1 ,min:1, max:99 %>

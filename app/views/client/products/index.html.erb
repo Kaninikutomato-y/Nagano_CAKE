@@ -1,12 +1,39 @@
-<h2>商品一覧(会員画面)</h2>
-<% @products.each do |product| %>
-  <div><%= link_to product_path(product) do %>
-    <%= attachment_image_tag product, :image ,style: "width: 160px; height: 90px;" %>
-    <% end %>
-    <%= link_to product.name, product_path(product) %>
-    <%= product.price %>円
+<div class="container">
+  <div class="row">
+    <div class="col-xs-2">
+      <h3>ジャンル検索</h3>
+      <% @genres.each do |genre| %>
+        <% if genre.valid_flag == true %>
+          <div class="search-genre-name">
+            <%= link_to genre.name, products_search_path(genre) %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-xs-10">
+      <h2>商品一覧(会員画面)</h2>
+      <div class="content-box clearfix">
+        <% @products.each do |product| %>
+          <% if product.genre.valid_flag == true %>
+          <div class="index-product-content">
+            <div class="index-product-img">
+              <%= link_to product_path(product) do %>
+                <%= attachment_image_tag product, :image ,style: "width: 240px; height: 135px;" %>
+              <% end %>
+            </div>
+            <div class="index-product-name">
+              <%= link_to product.name, product_path(product) %>
+            </div>
+            <div class="index-product-price">
+              <%= product.price %>円
+            </div>
+          </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="peja">
+        <%= paginate @products %>
+      </div>
+    </div>
   </div>
-<% end %>
-
-
-
+</div>

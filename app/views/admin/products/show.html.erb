@@ -1,5 +1,5 @@
 <h2>商品詳細</h2>
-<%= attachment_image_tag @product, :image ,style: "width: 160px; height: 90px;" %>
+<%= attachment_image_tag @product, :image ,style: "width: 320px; height: 180px;" %>
 <table>
     <tr>
       <td>商品名</td>
@@ -15,7 +15,7 @@
     </tr>
     <tr>
       <td>税込価格(税抜価格)</td>
-      <td><%= @product.price.to_i * 1.1 %>(<%= @product.price %>)円</td>
+      <td><%= @product.price.to_s(:delimited) * 1.1 %>(<%= @product.price.to_s(:delimited) %>)円</td>
     </tr>
     <tr>
       <td>販売ステータス</td>

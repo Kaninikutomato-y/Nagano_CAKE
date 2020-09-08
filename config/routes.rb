@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   	resources :products, only: [:new, :create, :edit, :update, :show, :index]
   	get 'home/top'
   	root 'home#top'
+    get 'search' => 'search#search'
   	resources :orders, only: [:update, :index, :show]
   	resources :order_items, only: [:update]
   	resources :genres, only: [:index, :create, :edit, :update]
@@ -43,8 +44,9 @@ Rails.application.routes.draw do
   	root 'home#top'
   	get 'home/about'
   	resources :orders, only: [:new, :create, :index, :show]
-    post 'orders/confirm'
-    get 'orders/thanks'
+  	post 'orders/confirm'
+  	get 'orders/thanks'
+    get 'products/search/:id' => 'products#search', as: 'products_search'
     resources :clients, only: [:show, :edit, :update] do
       member do
         get "unsubscribe"
