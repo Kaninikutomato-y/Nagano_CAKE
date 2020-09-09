@@ -6,7 +6,7 @@
 			<tbody>
 				<tr>
 					<td>注文日</td>
-					<td><%= @order.created_at %></td>
+					<td><%= @order.created_at.to_s(:datetime_jp) %></td>
 				</tr>
 				<tr>
 					<td>配送先</td>
@@ -22,7 +22,7 @@
 				</tr>
 				<tr>
 					<td>ステータス</td>
-					<td><%= @order.ststus %></td>
+					<td><%= @order.status %></td>
 				</tr>
 			</tbody>
 		</table>
@@ -42,8 +42,10 @@
 				<tr>
 					<td>商品合計</td>
 					<td>
-						<% sum_product = price_include_tax(cart_item.product.price).to_i * cart_item.quantity %>
+						<% @order.order_items.each do |order_item| %>
+						<% sum_product = price_include_tax(order_item.price).to_i * order_item.quantity %>
 						<% sum_all += sum_product %>
+						<% end %>
 						<%= sum_all.to_i %>円
 					</td>
 				</tr>
