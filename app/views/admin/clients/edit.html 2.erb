@@ -1,0 +1,52 @@
+<h2><%= @client.last_name %><%= @client.first_name %>さんの会員情報編集</h2>
+
+  <div class="field">
+    会員ID
+    <%= @client.id %>
+  </div>
+
+<%= form_for(@client) do |f| %>
+
+ <div class="field">
+    <%= f.label :名前 %>
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :フリガナ %>
+    <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
+    <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :郵便番号（ハイフンなし） %>
+    <%= f.text_field :postcode, autofocus: true, autocomplete: "postcode" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :住所 %>
+    <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :電話番号（ハイフンなし） %>
+    <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :メールアドレス %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :会員ステータス %>
+    <%= f.radio_button :is_deleted, true %>有効
+    <%= f.radio_button :is_deleted, false %>無効
+  </div>
+
+  <div class="actions">
+    <%= f.submit "変更を保存する" %>
+  </div>
+
+<% end %>

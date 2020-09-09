@@ -1,0 +1,25 @@
+<h2>会員一覧</h2>
+
+<table border="1">
+	<thead>
+		<tr bgcolor="gray">
+			<th>会員ID</th>
+			<th>氏名</th>
+			<th>メールアドレス</th>
+			<th>ステータス</th>
+		</tr>
+	</thead>
+	<% @clients.each do |client| %>
+		<tbody>
+			<tr>
+				<td><%= client.id %></td>
+				<td><%= link_to client.last_name, admin_client_path(client) %><%= client.first_name %></td>
+				<td><%= client.email %></td>
+				<td><% if client.is_deleted == true %>有効
+	                <% else %>退会済み
+	                <% end %>
+				</td>
+			</tr>
+		</tbody>
+	<% end %>
+</table>
