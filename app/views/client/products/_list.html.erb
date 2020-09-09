@@ -1,0 +1,21 @@
+<table class="table">
+		<tr class="active">
+			<th><h4>ジャンル検索</h4></th>
+		</tr>
+		<tr>
+			<td>
+				<% genres.each do |genre| %>
+				  <% if genre.valid_flag == true %>
+				    <div class="search-genre-name">
+				      <%= link_to products_search_path(genre) do %>
+				      <%= genre.name %>
+				      (<%= genre.products.count %>)
+				      <% end %>
+				    </div>
+				  <% end %>
+				<% end %>
+			</td>
+		</tr>
+</table>
+
+
