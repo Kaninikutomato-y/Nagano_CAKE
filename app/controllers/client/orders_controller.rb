@@ -10,7 +10,6 @@ class Client::OrdersController < ApplicationController
     if current_client.cart_items.exists?
       @order = Order.new(order_params)
       @order.client_id = current_client.id
-
       @add = params[:order][:add].to_i
       case @add
         when 1
@@ -37,11 +36,11 @@ class Client::OrdersController < ApplicationController
         @delivery.save
       end
 
-      current_customer.cart_items.each do |cart_item|
+      current_client.cart_items.each do |cart_item|
         order_item = @order.order_items.build
         order_item.order_id = @order.id
         order_item.product_id = cart_item.product_id
-        order_item.quantitiy = cart_item.quantity
+        order_item.quantity = cart_item.quantity
         order_item.price = cart_item.product.price
         order_item.save
         cart_item.destroy
@@ -56,6 +55,7 @@ class Client::OrdersController < ApplicationController
     @order = Order.new
     @cart_items = current_client.cart_items
     @order.pay_method = params[:order][:pay_method]
+    @order.billed_amount = params[:order][:billed_amount]
     @add = params[:order][:add].to_i
     case @add
       when 1
@@ -69,7 +69,7 @@ class Client::OrdersController < ApplicationController
         @order.address = @delivery.address
         @order.name = @delivery.name
       when 3
-        @order.postcode = params[:order][:new_add][:post_code]
+        @order.postcode = params[:order][:new_add][:postcode]
         @order.address = params[:order][:new_add][:address]
         @order.name = params[:order][:new_add][:name]
     end
@@ -97,7 +97,7 @@ class Client::OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(
-      :created_at, :address, :name, :status, :pay_method, :postcode, :freight,
+      :address, :name, :status, :pay_method, :postcode, :freight, :billed_amount,
       order_items_attributes: [:order_id, :product_id, :quantity, :price, :production_status]
       )
   end

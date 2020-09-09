@@ -41,6 +41,7 @@ class CartItemsController < ApplicationController
   def destroy_all
     current_client.cart_items.destroy_all
     redirect_to cart_items_path
+    flash[:info] = 'カートを空にしました。'
   end
 
 
