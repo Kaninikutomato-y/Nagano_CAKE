@@ -1,2 +1,83 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<h4>注文履歴詳細</h4>
+<table>
+	<tbody>
+		<tr>
+			<td>購入者</td>
+			<td><%= @order.name %></td>
+		</tr>
+		<tr>
+			<td>配送先</td>
+			<td>
+				〒<%= @order.postcode %> <%= @order.address %><br>
+				<%= @order.name %>
+			</td>
+		</tr>
+		<tr>
+			<td>支払方法</td>
+			<td><%= @order.pay_method %></td>
+		</tr>
+		<tr>
+			<td>注文ステータス</td>
+			<td>
+				<%= form_with(model: @order, url: admin_order_path, local: true) do |f| %>
+					<%= f.select :status, Order.statuses.keys.map {|k| [k, k]} %>
+					<%= f.submit '更新', class: 'btn btn-primary' %>
+				<% end %>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<div class="row">
+	<div class="col-lg-8">
+		<table>
+			<thead>
+				<tr>
+					<th>商品名</th>
+					<th>単価(税込)</th>
+					<th>数量</th>
+					<th>小計</th>
+					<th>制作ステータス</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @order_items.each do |order_item| %>
+				<tr>
+					<td><%= order_item.product.name %></td>
+					<td><%= price_include_tax(order_item.product.price) %></td>
+					<td><%= order_item.quantity%></td>
+					<td>
+						<%= sum_product = price_include_tax(order_item.product.price).to_i * order_item.quantity %>円
+					</td>
+					<td>
+						<%= form_with(model: order_item, url: admin_order_item_path(order_item), local: true) do |f| %>
+							<%= f.select :production_status, OrderItem.production_statuses.keys.map {|k| [k, k]} %>
+							<%= f.submit '更新', class: 'btn btn-primary' %>
+						<% end %>
+					</td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-lg-1">
+		
+	</div>
+	<div class="col-lg-3">
+		<table>
+			<tbody>
+				<tr>
+					<td>商品合計</td>
+					<td><%= @order.billed_amount - @order.freight %>円</td>
+				</tr>
+				<tr>
+					<td>送料</td>
+					<td><%= @order.freight %></td>
+				</tr>
+				<tr>
+					<td>請求金額合計</td>
+					<td><%=  @order.billed_amount %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

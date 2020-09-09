@@ -11,7 +11,11 @@
 	<tbody>
 		<% @orders.each do |order| %>
 		<tr>
-			<td><%= order.created_at %></td>
+			<td>
+				<%= link_to admin_order_path(order) do %>
+					<%= order.created_at.to_s(:datetime_jp) %>
+				<% end %>
+			</td>
 			<td><%= order.name %></td>
 			<td>
 				<% sum_all = 0 %>
