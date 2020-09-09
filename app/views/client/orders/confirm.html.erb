@@ -59,6 +59,13 @@
 		<%= @order.address %><br>
 		<%= @order.name %></p>
 
+	<%= f.hidden_field :client_id, :value => current_client.id %>
+  	<%= f.hidden_field :postcode, :value => "#{@order.postcode}" %>
+  	<%= f.hidden_field :address, :value => "#{@order.address}" %>
+  	<%= f.hidden_field :name, :value => "#{@order.name}" %>
+  	<%= f.hidden_field :pay_method %>
+  	<%= f.hidden_field :billed_amount, :value => billed_amount.to_i %>
+
 	<%= f.submit "購入を確定する", class: "btn btn-success" %>
 
 <% end %>
