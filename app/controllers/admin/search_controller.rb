@@ -10,4 +10,5 @@ class Admin::SearchController < ApplicationController
 			@product = Product.search(search,word)
 		end
 	end
+
 end
