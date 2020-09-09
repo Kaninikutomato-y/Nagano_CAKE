@@ -37,7 +37,7 @@
 				<tr>
 					<% sum_all = 0 %>
 					<td>送料</td>
-					<td><%= @order.freight.to_i %>円</td>
+					<td><%= @order.freight.to_s(:delimited) %>円</td>
 				</tr>
 				<tr>
 					<td>商品合計</td>
@@ -46,13 +46,15 @@
 						<% sum_product = price_include_tax(order_item.price).to_i * order_item.quantity %>
 						<% sum_all += sum_product %>
 						<% end %>
-						<%= sum_all.to_i %>円
+						<%= sum_all.to_s(:delimited) %>
+						<% sum_all.to_i %>円
 					</td>
 				</tr>
 				<tr>
 					<td>請求金額</td>
 					<% billed_amount = sum_all + @order.freight.to_i %>
-					<td><%= billed_amount.to_i %>円</td>
+					<td><%= billed_amount.to_s(:delimited) %>
+						<% billed_amount.to_i %>円</td>
 				</tr>
 			</tbody>
 		</table>
@@ -78,10 +80,12 @@
 								<%= order_item.product.name %>
 							<% end %>
 						</td>
-						<td><%= price_include_tax(order_item.product.price) %></td>
+						<td><%= price_tax(order_item.product.price).to_s(:delimited) %></td>
 						<td><%= order_item.quantity %></td>
 						<td>
-							<%= sum_product = price_include_tax(order_item.product.price).to_i * order_item.quantity %>円
+							<% sum_product = price_tax(order_item.product.price).to_i * order_item.quantity %>
+							<%= sum_product.to_s(:delimited) %>円
+							<% sum_product.to_i %>
 							<% sum_all += sum_product %>
 						</td>
 					</tr>
