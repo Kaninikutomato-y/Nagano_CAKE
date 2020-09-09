@@ -1,33 +1,34 @@
-<div class="container">
+<div class="contain">
   <div class="row">
     <div class="col-xs-2">
       <%= render 'client/products/list', genres:@genres %>
     </div>
     <div class="col-xs-10">
       <h2>商品一覧　全<%= @products.count %>件</h2>
-      <div class="content-box clearfix">
+      <div class="index-container">
         <% @products.each do |product| %>
-
-          <div class="index-product-content">
-            <div class="index-product-img">
-              <%= link_to product_path(product) do %>
-                <%= attachment_image_tag product, :image ,style: "width: 240px; height: 135px;" %>
-                <div class="index-product-name">
-                  <%= link_to product.name.truncate(13), product_path(product) %>
+          <%= link_to product_path(product) do %>
+            <div class="index-item">
+              <div class="index-img">
+                <%= attachment_image_tag product, :image ,style: "width: 192px; height: 108px;" %>
+              </div>
+              <div class="index-box">
+                <div class="index-name">
+                  <%= product.name.truncate(19) %>
                 </div>
-              <% end %>
+                <div class="index-price">
+                  ¥<%= product.price.to_s(:delimited) %>
+                  <% if product.sale_status == false %>
+                    <div class ="soldout">SOLD OUT</div>
+                  <% end %>
+                </div>
+              </div>
             </div>
-            <div class="index-product-price">
-              <%= product.price.to_s(:delimited) %>円
-              <% if product.sale_status == false %>売り切れ中
-              <% end %>
-            </div>
-          </div>
-
+          <% end %>
         <% end %>
       </div>
-      <div class="peja">
-      </div>
+    </div>
+    <div class="peja">
     </div>
   </div>
 </div>

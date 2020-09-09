@@ -12,13 +12,15 @@
 			<div>¥<%= price_tax(@product.price).to_s(:delimited) %>(税込)</div>
 
 
-
+      <% if @product.sale_status == true %>
 			<%= form_with(model: [@cart_item], local: true, url:cart_items_path ) do |f| %>
 			  <%= f.label :個数　%>
 			  <%= f.number_field :quantity, value: 1 ,min:1, max:99 %>
 			  <%= f.hidden_field :product_id, value: @product.id %>
 			  <%= f.submit "カートに入れる", class: "btn btn-primary" %>
 			 <% end %>
+      <% else %>SOLD OUT
+      <% end %>
 		</div>
 	</div>
 </div>

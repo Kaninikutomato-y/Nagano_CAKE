@@ -2,25 +2,46 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+.index-container {
+  display: flex;
+  flex-wrap: wrap;
 }
-.clearfix::after {
-  content: "";
-  display: block;
-  clear: both;
+.index-item {
+  padding: 0 0 20px 20px ;
 }
-.index-product-content {
-  float: left;
-  margin :20px;
-  height: 220px;
-  width: 240px;
+.index-box {
+  width: 192px;
+  height: 90px;
+  background: #f7f7f7;
 }
-.index-product-name {
-  font-size: 20px;
+.index-name {
+  font-size: 16px;
+  font-color: #333;
+  padding: 10px;
 }
-.index-product-price {
-  font-size: 15px;
+.index-price {
+  font-color: #333;
+  padding: 0  10px 10px 10px;
+}
+.link {
+  text-decoration: none;
+}
+.soldout {
+  size: 80%;
+  width:150px;
+  float:left;
+  margin:0 10px 10px 0;
+  position:relative;
+  padding:5px;
+  font-weight:bold;
+  font-size:20px;
+  color:#fff;
+  background:#c00;
+  position:absolute;
+  -moz-box-shadow: 1px 1px 2px #333;
+  -webkit-box-shadow: 1px 1px 2px #333;
+  -moz-transform: rotate(345deg);
+  -webkit-transform: rotate(345deg);
+  -moz-transition: 0.4s ease-in-out;
+  -webkit-transition: 0.4s ease-in-out;
 }
