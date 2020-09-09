@@ -1,38 +1,32 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-2">
-      <h3>ジャンル検索</h3>
-      <% @genres.each do |genre| %>
-        <% if genre.valid_flag == true %>
-          <div class="search-genre-name">
-            <%= link_to genre.name, products_search_path(genre) %>
-          </div>
-        <% end %>
-      <% end %>
+      <%= render 'client/products/list', genres:@genres %>
     </div>
     <div class="col-xs-10">
-      <h2>商品一覧(会員画面)</h2>
+      <h2>商品一覧　全<%= @products.count %>件</h2>
       <div class="content-box clearfix">
         <% @products.each do |product| %>
-          <% if product.genre.valid_flag == true %>
+
           <div class="index-product-content">
             <div class="index-product-img">
               <%= link_to product_path(product) do %>
                 <%= attachment_image_tag product, :image ,style: "width: 240px; height: 135px;" %>
+                <div class="index-product-name">
+                  <%= link_to product.name.truncate(13), product_path(product) %>
+                </div>
               <% end %>
             </div>
-            <div class="index-product-name">
-              <%= link_to product.name, product_path(product) %>
-            </div>
             <div class="index-product-price">
-              <%= product.price %>円
+              <%= product.price.to_s(:delimited) %>円
+              <% if product.sale_status == false %>売り切れ中
+              <% end %>
             </div>
           </div>
-          <% end %>
+
         <% end %>
       </div>
       <div class="peja">
-        <%= paginate @products %>
       </div>
     </div>
   </div>

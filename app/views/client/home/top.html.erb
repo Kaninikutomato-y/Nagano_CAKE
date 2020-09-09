@@ -1,11 +1,25 @@
 <div class="container">
 	<div class="row">
 	    <div class="col-xs-2">
-	    	
+	    	<%= render 'client/products/list', genres:@genres %>
 	    </div>
 
 	    <div class="col-xs-10">
-	    	<h1>TOPページ</h1>
+	         <%= image_tag('NCL_sample.png', style: "width: 600px; height: 200px;") %>
+	    	<p class="h4">ようこそNaganoCakeへ！<br>
+	    		このサイトは、ケーキ販売のECサイトになります。<br>
+	    		会員でない方も商品の閲覧はできますが、<br>
+	    		購入には会員登録が必要になります。
+
+	    	</p>
+
+	    	<h2>おすすめ</h2>
+	    	<%= image_tag('cake_8.jpg', style: "width: 200px; height: 120px;") %>
+	    	<%= image_tag('cake_1.jpg', style: "width: 200px; height: 120px;") %>
+	    	<%= image_tag('cake_4.jpg', style: "width: 200px; height: 120px;") %>
+	    	<%= image_tag('cake_9.jpg', style: "width: 200px; height: 120px;") %>
+	    	<div><%= link_to 'もっと見る＞', products_path %></div>
+
 	    </div>
 	</div>
 </div>

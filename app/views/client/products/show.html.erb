@@ -1,15 +1,24 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-2">
+			<%= render 'client/products/list', genres: @genres %>
+		</div>
+		<div class="col-xs-10">
+			<h2>商品詳細(会員側)</h2>
 
-<h2>商品詳細(会員側)</h2>
-<div><%= attachment_image_tag @product, :image ,style: "width: 160px; height: 90px;" %></div>
-<div><%= @product.name %></div>
-<div><%= @product.explanation %></div>
-<div>¥<%= @product.price * 1.1 %>(税込)</div>
+			<div><%= attachment_image_tag @product, :image ,style: "width: 160px; height: 90px;" %></div>
+			<div><%= @product.name %></div>
+			<div><%= @product.explanation %></div>
+			<div>¥<%= price_tax(@product.price).to_s(:delimited) %>(税込)</div>
 
 
 
-<%= form_with(model: [@cart_item], local: true, url:cart_items_path ) do |f| %>
-  <%= f.label :個数　%>
-  <%= f.number_field :quantity, value: 1 ,min:1, max:99 %>
-  <%= f.hidden_field :product_id, value: @product.id %>
-  <%= f.submit "カートに入れる", class: "btn btn-primary" %>
- <% end %>
+			<%= form_with(model: [@cart_item], local: true, url:cart_items_path ) do |f| %>
+			  <%= f.label :個数　%>
+			  <%= f.number_field :quantity, value: 1 ,min:1, max:99 %>
+			  <%= f.hidden_field :product_id, value: @product.id %>
+			  <%= f.submit "カートに入れる", class: "btn btn-primary" %>
+			 <% end %>
+		</div>
+	</div>
+</div>
