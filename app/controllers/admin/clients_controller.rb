@@ -10,7 +10,7 @@ class Admin::ClientsController < ApplicationController
   def update
     @client = Client.find(params[:id])
     @client.update(client_params)
-    redirect_to admin_clients_path
+    redirect_to admin_client_path(@client)
   end
 
   def index

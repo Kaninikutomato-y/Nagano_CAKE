@@ -4,4 +4,8 @@ module ApplicationHelper
     price = price * 1.1
     "#{price.floor}円"
  end
+
+ def price_tax(price)
+    (price * 1.1).floor
+ end
 end

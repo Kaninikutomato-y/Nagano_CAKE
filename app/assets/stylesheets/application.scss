@@ -22,6 +22,15 @@ body {
     margin-top: 15px;
 }
 
+.logo {
+    text-align: center;
+    margin-right: 15px
+}
+
+header {
+    margin-bottom: 25px;
+}
+
 header p {
     margin-top: 33px;
     margin-right: 10px;
@@ -29,7 +38,7 @@ header p {
 }
 
 .search-button {
-    margin-top: 33px;
+    margin-top: 15px;
 }
 
 /* 中央揃えのコード */
@@ -56,6 +65,10 @@ header p {
 	margin-top: 17px;
 }
 
+td, th {
+    padding: 8px;
+}
+
 .box4{
     margin: 2em 0;
     color: #2c2c2f;
@@ -67,4 +80,5 @@ header p {
 footer p {
     text-align: center;
 	margin-top: 10px;
+    margin-right: 20px;
 }
