@@ -1,4 +1,15 @@
 <h2><%= @client.last_name %><%= @client.first_name %>さんの会員情報編集</h2>
+  <% if @client.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= @client.errors.count %>件のエラーがあります。</h4>
+      <ul>
+        <% @client.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
 
   <div class="field">
     会員ID

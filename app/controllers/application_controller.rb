@@ -27,7 +27,11 @@ class ApplicationController < ActionController::Base
 		end
 
 		def after_sign_in_path_for(resource)
-			products_path(resource)
+			if  current_client
+				products_path
+			else
+				admin_root_path
+			end
 		end
 
 end

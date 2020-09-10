@@ -1,4 +1,14 @@
 <h4>配送先登録/一覧</h4>
+	<% if @delivery.errors.any? %>
+		<div class="alert alert-danger">
+			<h4><%= @delivery.errors.count %>件のエラーがあります。</h4>
+			<ul>
+				<% @delivery.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
 <%= form_for(@delivery) do |f| %>
 	<div class="field">
 		<%= f.label :郵便番号（ハイフンなし） %>
