@@ -9,13 +9,11 @@ class Client::ProductsController < ApplicationController
   end
 
   def show
-  	@product = Product.find(params[:id])
   	@cart_item = CartItem.new
     @genres = Genre.all
   end
 
   def search
-    @genre = Genre.find(params[:id])
     @products = @genre.products
   end
 
