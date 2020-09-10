@@ -7,7 +7,7 @@
       <h2>商品一覧　全<%= @products.count %>件</h2>
       <div class="index-container">
         <% @products.each do |product| %>
-          <%= link_to product_path(product) do %>
+          <%= link_to(product_path(product), class: 'links') do %>
             <div class="index-item">
               <div class="index-img">
                 <%= attachment_image_tag product, :image ,style: "width: 192px; height: 108px;" %>
@@ -19,7 +19,9 @@
                 <div class="index-price">
                   ¥<%= product.price.to_s(:delimited) %>
                   <% if product.sale_status == false %>
-                    <div class ="soldout">SOLD OUT</div>
+                    <div class ="soldout-f">
+                      <p class="soldout-c">SOLD OUT</p>
+                    </div>
                   <% end %>
                 </div>
               </div>

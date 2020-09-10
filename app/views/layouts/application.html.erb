@@ -81,11 +81,14 @@
       </nav>
     </header>
 
-    <div class="main-visual">
-      <div class="container">
-        <%= content_for?(:content) ? yield(:content) : yield %>
+    <main>
+      <%= flash[:notice] %>
+      <div class="main-visual">
+        <div class="container">
+          <%= content_for?(:content) ? yield(:content) : yield %>
+        </div>
       </div>
-    </div>
+    </main>
 
     <div class="box4">
       <footer style="background-color: #f0f0f4;">
