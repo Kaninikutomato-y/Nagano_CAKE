@@ -4,7 +4,7 @@ class Client::ProductsController < ApplicationController
   before_action :correct_genre, only: [:search]
 
   def index
-    @products = Product.joins(:genre).where(genres: {valid_flag: true})
+    @products = Product.joins(:genre).where(genres: {valid_flag: true}).page(params[:page]).per(8)
     @genres = Genre.all
   end
 

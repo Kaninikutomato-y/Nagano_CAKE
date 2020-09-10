@@ -4,7 +4,7 @@
       <%= render 'client/products/list', genres:@genres %>
     </div>
     <div class="col-xs-10">
-      <h2>商品一覧　全<%= @products.count %>件</h2>
+      <h2>商品一覧　全<%= @products.total_count %>件</h2>
       <div class="index-container">
         <% @products.each do |product| %>
           <%= link_to(product_path(product), class: 'links') do %>
@@ -29,6 +29,7 @@
           <% end %>
         <% end %>
       </div>
+      <%= paginate @products %>
     </div>
     <div class="peja">
     </div>
