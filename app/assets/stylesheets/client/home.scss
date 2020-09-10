@@ -1,3 +1,44 @@
 // Place all the styles related to the public/home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.h1_about {
+	margin-right: 50px;
+}
+
+.client_about {
+	text-align: center;
+	margin-right: 15px;
+}
+
+.about_image {
+	text-align: center;
+	margin-right: 30px;
+	margin-top: 20px;
+}
+
+.box_about {
+    margin: 15px 0;
+    position: relative;
+    padding: 15px 15px;
+    border-top: solid 2px gray;
+    border-bottom: solid 2px gray;
+}
+
+.box_about:before, .box_about:after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    width: 2px;
+    height: -webkit-calc(100% + 20px);
+    height: calc(100% + 20px);
+    background-color: gray;
+}
+
+.box_about:before {left: 10px;}
+.box_about:after {right: 10px;}
+.box_about p {
+    margin: 0;
+    padding: 0;
+}
