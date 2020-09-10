@@ -1,4 +1,7 @@
 class Admin::ClientsController < ApplicationController
+
+    before_action :authenticate_admin!
+
   def show
     @client = Client.find(params[:id])
   end
@@ -9,8 +12,11 @@ class Admin::ClientsController < ApplicationController
 
   def update
     @client = Client.find(params[:id])
-    @client.update(client_params)
-    redirect_to admin_client_path(@client)
+    if @client.update(client_params)
+      redirect_to admin_client_path(@client)
+    else
+      render "edit"
+    end
   end
 
   def index

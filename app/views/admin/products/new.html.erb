@@ -1,5 +1,15 @@
 
 <h2>商品新規登録</h2>
+  <% if @product.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= @product.errors.count %>件のエラーがあります。</h4>
+      <ul>
+        <% @product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 <%= form_for @product,:url => {controller: "products", action: "create"} do |f| %>
 
   <img id="img_prev" width=320 height=180 src="#" class='hidden' />

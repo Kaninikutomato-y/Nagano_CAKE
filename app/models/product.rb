@@ -4,6 +4,12 @@ class Product < ApplicationRecord
 	has_many :cart_items
   attachment :image
 
+  validates :name, :price, presence: true
+  validates :explanation, presence: true, length: { maximum: 50 }
+  validates :sale_status, inclusion: { in: [true, false]}
+
+
+
   def self.search(search,word)
   	if search == "forward_match"
   		@product = Product.where("name LIKE?","#{word}%")

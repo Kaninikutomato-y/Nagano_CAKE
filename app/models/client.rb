@@ -9,9 +9,12 @@ class Client < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :deliveries, dependent: :destroy
-
+  
+  validates :email, :last_name, :first_name,:last_name_kana, :first_name_kana, :address, :phone_number, presence: true
+  validates :postcode, length: { is:7 }
+  
   def active_for_authentication?
-    super && (self.is_deleted == false)
+   super && (self.is_deleted == false)
   end
 
   def self.search(search,word)

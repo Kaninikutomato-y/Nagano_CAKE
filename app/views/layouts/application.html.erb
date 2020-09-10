@@ -9,18 +9,23 @@
 
   <body>
     <header>
-        <div class="container">
-          <div class="row">
-              <div class="logo">
-                <%= image_tag('NCL-color.png', style: "height: 85px;") %>
-              </div>
-          </div>
+      <div class="header_top">
+        <p class="flash"><%= flash[:notice] %></p>
+      </div>
+      <div class="container">
+        <div class="row">
+            <div class="logo">
+              <%= link_to image_tag('NCL-color.png', style: "height: 85px;"), home_top_path %>
+            </div>
         </div>
+      </div>
 
       <nav class="navbar navbar-inverse navbar-static-top">
         <ul class="nav navbar-nav">
               <% if client_signed_in? %>
 
+                <li class="nav-list-item">
+                  <%= link_to ' ホーム', home_top_path, class: 'glyphicon glyphicon-home home' %></li>
                 <li class="nav-list-item">
                   <%= link_to ' マイページ', client_path(current_client), class: 'glyphicon glyphicon-user user' %></li>
                 <li class="nav-list-item">
@@ -33,6 +38,8 @@
 
               <% elsif admin_signed_in? %>
 
+                <li class="nav-list-item">
+                  <%= link_to ' ホーム', admin_home_top_path, class: 'glyphicon glyphicon-home home' %></li>
                 <li class="nav-list-item">
                   <%= link_to ' 商品一覧', admin_products_path, class: 'glyphicon glyphicon-th index' %></li>
                 <li class="nav-list-item">
@@ -82,7 +89,6 @@
     </header>
 
     <main>
-      <%= flash[:notice] %>
       <div class="main-visual">
         <div class="container">
           <%= content_for?(:content) ? yield(:content) : yield %>
@@ -92,7 +98,16 @@
 
     <div class="box4">
       <footer style="background-color: #f0f0f4;">
-              <p>©︎ Kaninikutomato.inc</p>
+        <% if client_signed_in? %>
+          <P><%= link_to 'Click here for the administrator', admin_session_path %></P>
+        <% elsif admin_signed_in? %>
+          <P><%= link_to 'Click here for the client', client_session_path %></P>
+        <% else %>
+          <P><%= link_to 'Click here for the administrator', admin_session_path %>
+           or 
+          <%= link_to 'Click here for the members', client_session_path %></P>
+        <% end %>
+        <p>©︎ Kaninikutomato.inc</p>
       </footer>
     </div>
 
