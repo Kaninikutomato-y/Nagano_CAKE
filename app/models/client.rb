@@ -10,6 +10,9 @@ class Client < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :deliveries, dependent: :destroy
 
+  def active_for_authentication?
+    super && (self.is_deleted == false)
+  end
 
   def self.search(search,word)
   	if search == "forward_match"
