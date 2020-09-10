@@ -3,35 +3,10 @@
     <div class="col-xs-2">
       <%= render 'client/products/list', genres:@genres %>
     </div>
+
     <div class="col-xs-10">
       <h2>商品一覧　全<%= @products.total_count %>件</h2>
-      <div class="index-container">
-        <% @products.each do |product| %>
-          <%= link_to(product_path(product), class: 'links') do %>
-            <div class="index-item">
-              <div class="index-img">
-                <%= attachment_image_tag product, :image ,style: "width: 192px; height: 108px;" %>
-              </div>
-              <div class="index-box">
-                <div class="index-name">
-                  <%= product.name.truncate(19) %>
-                </div>
-                <div class="index-price">
-                  ¥<%= product.price.to_s(:delimited) %>
-                  <% if product.sale_status == false %>
-                    <div class ="soldout-f">
-                      <p class="soldout-c">SOLD OUT</p>
-                    </div>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-      <%= paginate @products %>
-    </div>
-    <div class="peja">
+        <%= render 'client/products/index', products:@products %>
     </div>
   </div>
 </div>
