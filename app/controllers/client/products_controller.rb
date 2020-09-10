@@ -14,7 +14,8 @@ class Client::ProductsController < ApplicationController
   end
 
   def search
-    @products = @genre.products
+    @products = @genre.products.page(params[:page]).per(8)
+    @genres = Genre.all
   end
 
   private
