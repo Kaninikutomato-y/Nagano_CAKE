@@ -10,6 +10,15 @@ class Client < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :deliveries, dependent: :destroy
 
+  validates :email, presence: true
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+  validates :last_name_kana, presence: true
+  validates :first_name_kana, presence: true
+  validates :postcode, length: { is:7 }
+  validates :address, presence: true
+  validates :phone_number, presence: true
+
 
   def self.search(search,word)
   	if search == "forward_match"

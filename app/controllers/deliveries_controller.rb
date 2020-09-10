@@ -1,5 +1,10 @@
 class DeliveriesController < ApplicationController
-  before_action :authenticate_client!
+
+  before_action :authenticate
+  def authenticate
+    redirect_to new_client_session_url unless client_signed_in?
+    flash[:notice] = "ここから先はログインが必要です!!"
+  end
 
   def index
     @delivery = Delivery.new
@@ -8,8 +13,12 @@ class DeliveriesController < ApplicationController
 
   def create
     @delivery = Delivery.new(delivery_params)
-    @delivery.save
-    redirect_to deliveries_path
+    if @delivery.save
+      redirect_to deliveries_path
+    else
+      @deliveries = Delivery.where(client_id: current_client.id)
+      render "index"
+    end
   end
 
   def edit
@@ -23,8 +32,11 @@ class DeliveriesController < ApplicationController
 
   def update
     @delivery = Delivery.find(params[:id])
-    @delivery.update(delivery_params)
-    redirect_to deliveries_path
+    if @delivery.update(delivery_params)
+      redirect_to deliveries_path
+    else
+      render "edit"
+    end
   end
 
   def destroy

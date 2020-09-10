@@ -1,4 +1,11 @@
 class Client::ClientsController < ApplicationController
+
+  before_action :authenticate
+  def authenticate
+    redirect_to new_client_session_url unless client_signed_in?
+    flash[:notice] = "ここから先はログインが必要です!!"
+  end
+
   def show
     @client = Client.find(params[:id])
   end
@@ -9,8 +16,11 @@ class Client::ClientsController < ApplicationController
 
   def update
     @client = Client.find(params[:id])
-    @client.update(client_params)
-    redirect_to client_path(@client)
+    if @client.update(client_params)
+      redirect_to client_path(@client)
+    else
+      render "edit"
+    end
   end
 
   def unsubscribe
