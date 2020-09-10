@@ -27,6 +27,8 @@ class Client::ClientsController < ApplicationController
     @client = Client.find(params[:id])
     if request.patch?
       @client.update(is_deleted: true)
+      reset_session
+      flash[:notice] = 'ご利用ありがとうございました。'
       redirect_to root_path
     end
   end
@@ -35,5 +37,12 @@ class Client::ClientsController < ApplicationController
     def client_params
       params.require(:client).permit(
         :last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postcode, :address, :phone_number, :is_deleted)
+    end
+
+    def correct_client
+      client = Client.find(params[:id])
+      if client.id != current_client.id
+        redirect_to client_path(current_client)
+      end
     end
 end

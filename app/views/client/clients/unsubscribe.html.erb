@@ -5,4 +5,5 @@
 退会する場合は、「退会する」をクリックしてください。</p>
 
 <%= link_to '退会しない', edit_client_path, class: "btn btn-primary" %>
-<%= link_to '退会する', unsubscribe_client_path(@client), method: :patch, data: {confirm: "本当に退会しちゃうの？"}, class: "btn btn-danger" %>
+<%= link_to '退会する', unsubscribe_client_path(@client), method: :patch, data: {confirm: "退会されますと、商品の購入ができなくなります。
+本当に退会されますか？"}, class: "btn btn-danger" %>

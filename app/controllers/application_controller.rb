@@ -32,6 +32,7 @@ class ApplicationController < ActionController::Base
 			else
 				admin_root_path
 			end
+
 		end
 
 end
