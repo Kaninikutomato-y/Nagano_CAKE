@@ -1,9 +1,18 @@
-<h2><%= @genre.name %>一覧　　全<%= @genre.products.count %>件</h2>
-<% @products.each do |product| %>
-  <div><%= link_to product_path(product) do %>
-    <%= attachment_image_tag product, :image ,style: "width: 160px; height: 90px;" %>
-    <% end %>
-    <%= link_to product.name, product_path(product) %>
-    <%= product.price.to_s(:delimited) %>円
+<div class="container">
+  <div class="row">
+    <div class="col-xs-2">
+      <%= render 'client/products/list', genres: @genres %>
+    </div>
+    <div class="col-xs-10">
+      <h2><%= @genre.name %>一覧　　全<%= @genre.products.count %>件</h2>
+      <% @products.each do |product| %>
+        <div><%= link_to product_path(product) do %>
+          <%= attachment_image_tag product, :image ,style: "width: 160px; height: 90px;" %>
+          <% end %>
+          <%= link_to product.name, product_path(product) %>
+          <%= product.price.to_s(:delimited) %>円
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>

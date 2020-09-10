@@ -15,6 +15,7 @@ class Client::ProductsController < ApplicationController
 
   def search
     @products = @genre.products
+    @genres = Genre.all
   end
 
   private
