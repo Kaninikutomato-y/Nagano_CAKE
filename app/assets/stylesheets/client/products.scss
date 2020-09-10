@@ -8,6 +8,12 @@
 }
 .index-item {
   padding: 0 0 20px 20px ;
+  transition:500ms all;
+  border-radius: 10%;
+}
+.index-item:hover{
+  transform:scale(1.1,1.1);
+  transition:500ms all;
 }
 .index-box {
   width: 192px;
@@ -15,33 +21,38 @@
   background: #f7f7f7;
 }
 .index-name {
+  font-family:'Osaka';
   font-size: 16px;
   font-color: #333;
   padding: 10px;
+  font-weight:bold;
 }
 .index-price {
   font-color: #333;
   padding: 0  10px 10px 10px;
+  font-family:'Tahoma';
 }
-.link {
-  text-decoration: none;
+.links {
+  text-decoration:none;
 }
-.soldout {
-  size: 80%;
-  width:150px;
-  float:left;
-  margin:0 10px 10px 0;
+.soldout-f {
+  width:90px;
+  float:right;
+  margin:7px 0 5px 10px;
   position:relative;
-  padding:5px;
+}
+.soldout-c {
+  right: 0%;
+  padding:3px 12px;
   font-weight:bold;
-  font-size:20px;
+  font-size:12px;
   color:#fff;
   background:#c00;
   position:absolute;
   -moz-box-shadow: 1px 1px 2px #333;
   -webkit-box-shadow: 1px 1px 2px #333;
-  -moz-transform: rotate(345deg);
-  -webkit-transform: rotate(345deg);
+  -moz-transform: rotate(347deg);
+  -webkit-transform: rotate(347deg);
   -moz-transition: 0.4s ease-in-out;
   -webkit-transition: 0.4s ease-in-out;
 }
