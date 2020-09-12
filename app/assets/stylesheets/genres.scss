@@ -2,3 +2,27 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.agi-table {
+  border-collapse: collapse;
+  width: 60%;
+  font-size: 16px;
+  text-align: left;
+  }
+
+.agi-th {
+  color: f333;
+  padding: 10px;
+  border-bottom: 2px solid #333333;
+  border-top: 2px solid #333333;
+  background-color:#F0F0F4;
+}
+
+.agi-td {
+  padding: 10px;
+  color: f333;
+  border-bottom: 1px solid gray;
+}
+
+.agi-form{
+  margin: 20px 0 30px 0px;
+}

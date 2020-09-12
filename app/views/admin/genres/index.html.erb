@@ -1,42 +1,54 @@
-<h2>ジャンル一覧・追加</h2>
-  <% if @genre.errors.any? %>
-    <div class="alert alert-danger">
-      <h4><%= @genre.errors.count %>件のエラーがあります。</h4>
-      <ul>
-        <% @genre.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-      </ul>
+<div class="contain">
+  <div class="row">
+    <div class="col-lg-1">
     </div>
-  <% end %>
+    <div class="col-lg-10">
+      <h2 class="agi-h2">ジャンル一覧・追加</h2>
+        <% if @genre.errors.any? %>
+          <div class="alert alert-danger">
+            <h4><%= @genre.errors.count %>件のエラーがあります。</h4>
+            <ul>
+              <% @genre.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
 
-<%= form_for @genre,:url => {controller: "genres", action: "create"} do |f| %>
-  <div class="field">
-    <%= f.label :ジャンル %>
-    <%= f.text_field :name %>
-    <%= f.radio_button :valid_flag, "true" %>有効
-    <%= f.radio_button :valid_flag, "false", :checked=>'checked' %>無効
-    <%= f.submit '追加', class: "btn btn-primary" %>
+      <%= form_for @genre,:url => {controller: "genres", action: "create"}, html: { class: "agi-form" } do |f| %>
+        <div class="field">
+          <%= f.label :ジャンル %>
+          <%= f.text_field :name, :size=>"20x10"  %>
+          <%= f.radio_button :valid_flag, "true", :checked=>'checked' %>有効
+          <%= f.radio_button :valid_flag, "false" %>無効
+          <%= f.submit '追加', class: "btn btn-primary" %>
+        </div>
+      <% end %>
+
+      <table class="agi-table">
+        <thead>
+          <tr>
+            <th class="agi-th">ジャンル</th>
+            <th class="agi-th">状態</th>
+            <th class="agi-th"></th>
+          </tr>
+        </thead>
+          <% @genres.each do |genre| %>
+        <tbody>
+          <tr>
+            <td class="agi-td"><%= genre.name %></td>
+            <td class="agi-td"><% if genre.valid_flag == true %>有効
+                <% else %>無効
+                <% end %></td>
+            <td class="agi-td"><%= link_to "編集する", edit_admin_genre_path(genre), class: "btn btn-primary"  %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+      <%= paginate @genres %>
+    </div>
+    <div>
+    <div class="col-lg-1">
+    </div>
   </div>
-<% end %>
-
-<table>
-  <thead>
-    <tr bgcolor="gray">
-      <th>ジャンル</th>
-      <th>状態</th>
-      <th colspan=""></th>
-    </tr>
-  </thead>
-    <% @genres.each do |genre| %>
-    <tbody>
-      <tr>
-        <th><%= genre.name %></th>
-        <th><% if genre.valid_flag == true %>有効
-            <% else %>無効
-            <% end %></th>
-        <th><%= link_to "編集する", edit_admin_genre_path(genre), class: "btn btn-primary"  %>
-      </tr>
-    </tbody>
-    <% end %>
-</table>
+</div>
