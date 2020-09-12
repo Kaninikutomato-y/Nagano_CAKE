@@ -2,20 +2,75 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-.v_line_left {
-  border-left: thick solid gray;
-  padding-left: 10px;
+.api-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 16px;
+  margin: 0 auto;
+  text-align: left;
 }
 
-.product-image {
-	text-align: center;
+ .api-th {
+  color: f333;
+  padding: 10px;
+  border-bottom: 2px solid #333333;
+  border-top: 2px solid #333333;
+  background-color:#F0F0F4;
 }
 
-h3 {
-	text-align: center;
+.api-td {
+  padding: 10px;
+  color: f333;
+  border-bottom: 1px solid gray;
+}
+
+.new-btn {
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #FFF;
+  background: #fd9535;
+  border-radius: 4px;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+  font-weight: bold;
+  border: solid 2px #d27d00;
+}
+
+.new-btn:active {
+  /*押したとき*/
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+}
+
+.aps-th {
+  width: 20%;
+  font-size: 16px;
+}
+
+.aps-td {
+font-size:15px;
+}
+
+.aps-h2{
+  margin-bottom: 20px;
+}
+
+.aps-block {
+  margin: 20px;
+}
+
+.aps-img {
+  text-align: center;
 }
 
 .button-a {
-	margin-top: 30px;
+  margin-top: 30px;
+  text-align: right;
+}
+
+.ape-block {
+  margin: 20px;
+}
+.ape-img {
+  text-align: center;
 }
