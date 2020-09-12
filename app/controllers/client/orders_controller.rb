@@ -32,14 +32,14 @@ class Client::OrdersController < ApplicationController
       end
       @order.save
 
-      if Delivery.find_by(address: @order.address).nil?
-        @delivery = Delivery.new
-        @delivery.postcode = @order.postcode
-        @delivery.address = @order.address
-        @delivery.name = @order.name
-        @delivery.client_id = current_client.id
-        @delivery.save
-      end
+
+      @delivery = Delivery.new
+      @delivery.postcode = @order.postcode
+      @delivery.address = @order.address
+      @delivery.name = @order.name
+      @delivery.client_id = current_client.id
+      @delivery.save
+
 
       current_client.cart_items.each do |cart_item|
         order_item = @order.order_items.build
@@ -52,6 +52,7 @@ class Client::OrdersController < ApplicationController
       end
       render :thanks
     else
+      flash[:notice] = "カートが空です！"
       redirect_to root_path
     end
   end
