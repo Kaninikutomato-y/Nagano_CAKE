@@ -1,102 +1,122 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
   <head>
     <title>Nagano-CAKE</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="css/skippr.css">
-    <link rel="stylesheet" href="css/style.css">
   </head>
 
   <body>
     <header>
-      <div class="header_top">
-        <p class="flash"><%= flash[:notice] %></p>
-      </div>
-      <div class="container">
-        <div class="row">
-            <div class="logo">
-              <%= link_to image_tag('NCL-color.png', style: "height: 85px;"), home_top_path %>
-            </div>
+      <div class="v_line_fix">
+        <div class="header_top">
+          <p class="flash"><%= flash[:notice] %></p>
         </div>
-      </div>
 
-      <nav class="navbar navbar-inverse navbar-static-top">
-        <ul class="nav navbar-nav">
-              <% if client_signed_in? %>
+        <nav class="navbar navbar-static-top">
+          <div class="container">
+            <nav class="nav navbar-nav navbar-left">
+              <div class="logo">
+                <%= link_to image_tag('NCL-color.png', style: "height: 85px;"), home_top_path %>
+              </div>
+            </nav>
+            <nav class="nav navbar-nav navbar-right">
+                  <% if client_signed_in? %>
 
-                <li class="nav-list-item">
-                  <%= link_to ' ホーム', home_top_path, class: 'glyphicon glyphicon-home home' %></li>
-                <li class="nav-list-item">
-                  <%= link_to ' マイページ', client_path(current_client), class: 'glyphicon glyphicon-user user' %></li>
-                <li class="nav-list-item">
-                  <%= link_to ' 商品一覧', products_path, class: 'glyphicon glyphicon-th index' %></li>
-                <li class="navbar-text"> ようこそ <%= current_client.last_name %><%= current_client.first_name %> さん ! </li>
-                <li class="nav-list-item">
-                  <%= link_to ' カート', cart_items_path, class: 'glyphicon glyphicon-shopping-cart cart' %></li>
-                <li class="nav-list-item">
-                  <%= link_to ' ログアウト', destroy_client_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout' %></li>
+                    <li class="navbar-text">
+                     ようこそ <%= current_client.last_name %><%= current_client.first_name %> さん !
+                    </li>
+                    <li class="nav-list-item">
+                      <%= link_to ' ホーム', home_top_path, class: 'glyphicon glyphicon-home item' %>
+                    </li>
+                    <li class="nav-list-item">
+                      <%= link_to ' マイページ', client_path(current_client), class: 'glyphicon glyphicon-user item' %>
+                    </li>
+                    <li class="nav-list-item">
+                      <%= link_to ' 商品一覧', products_path, class: 'glyphicon glyphicon-th item' %>
+                    </li>
+                    <li class="nav-list-item">
+                      <%= link_to ' カート', cart_items_path, class: 'glyphicon glyphicon-shopping-cart item' %>
+                    </li>
+                    <li class="nav-list-item">
+                      <%= link_to ' ログアウト', destroy_client_session_path, method: :delete, class: 'glyphicon glyphicon-log-out item' %>
+                    </li>
 
-              <% elsif admin_signed_in? %>
+                  <% elsif admin_signed_in? %>
 
-                <li class="nav-list-item">
-                  <%= link_to ' ホーム', admin_home_top_path, class: 'glyphicon glyphicon-home home' %></li>
-                <li class="nav-list-item">
-                  <%= link_to ' 商品一覧', admin_products_path, class: 'glyphicon glyphicon-th index' %></li>
-                <li class="nav-list-item">
-                  <%= link_to ' 会員一覧', admin_clients_path, class: 'glyphicon glyphicon-th index' %></li>
-                <li class="nav-list-item">
-                  <%= link_to ' 注文履歴一覧', admin_orders_path, class: 'glyphicon glyphicon-th index' %></li>
-                <li class="nav-list-item">
-                  <%= link_to ' ジャンル一覧', admin_genres_path, class: 'glyphicon glyphicon-th index' %></li>
-                <li class="nav-list-item">
-                  <%= link_to ' ログアウト', destroy_client_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout' %></li>
-                <li class="nav-list-item">
-                  <div class="search-button">
-                    <button data-toggle="collapse" data-target="#demo">
-                      Search <i class='glyphicon glyphicon-search'></i>
-                    </button>
-                    <div id="demo" class="collapse">
-                      <%= form_tag admin_search_path, method: :get do %>
-                        <%= select_tag 'model' ,options_for_select([['会員', 'client'], ['商品', 'product']]) %>
-                        <%= select_tag 'search', options_for_select([["前方一致","forward_match"], ["後方一致","backward_match"], ["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
-                        <div class="input-group">
-                          <%= text_field_tag :word, params[:word], placeholder: "Search", class: "form-control" %>
-                          <span class="input-group-btn">
-                            <button type="submit" class="btn btn-default">
-                              <i class='glyphicon glyphicon-search'></i>
-                            </button>
-                          </span>
+                    <li class="nav-list-item">
+                      <%= link_to ' ホーム', admin_home_top_path, class: 'glyphicon glyphicon-home item' %>
+                    </li>
+                    <li class="nav-list-item">
+                      <%= link_to ' 商品一覧', admin_products_path, class: 'glyphicon glyphicon-th item' %>
+                    </li>
+                    <li class="nav-list-item">
+                      <%= link_to ' 会員一覧', admin_clients_path, class: 'glyphicon glyphicon-th item' %>
+                    </li>
+                    <li class="nav-list-item">
+                      <%= link_to ' 注文履歴一覧', admin_orders_path, class: 'glyphicon glyphicon-th item' %>
+                      </li>
+                    <li class="nav-list-item">
+                      <%= link_to ' ジャンル一覧', admin_genres_path, class: 'glyphicon glyphicon-th item' %>
+                    </li>
+                    <li class="nav-list-item">
+                      <%= link_to ' ログアウト', destroy_client_session_path, method: :delete, class: 'glyphicon glyphicon-log-out item' %>
+                    </li>
+
+                    <li class="nav-list-item">
+                      <div class="search-button">
+                        <button data-toggle="collapse" data-target="#demo">
+                          Search <i class='glyphicon glyphicon-search'></i>
+                        </button>
+                        <div id="demo" class="collapse">
+                          <%= form_tag admin_search_path, method: :get do %>
+                            <%= select_tag 'model' ,options_for_select([['会員', 'client'], ['商品', 'product']]) %>
+                            <%= select_tag 'search', options_for_select([["前方一致","forward_match"], ["後方一致","backward_match"], ["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
+                            <div class="input-group">
+                              <%= text_field_tag :word, params[:word], placeholder: "Search", class: "form-control" %>
+                              <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default">
+                                  <i class='glyphicon glyphicon-search'></i>
+                                </button>
+                              </span>
+                            </div>
+                          <% end %>
                         </div>
-                      <% end %>
-                    </div>
-                  </div>
-                </li>
+                      </div>
+                    </li>
 
-              <% else %>
+                  <% else %>
 
-                <li class="nav-list-item">
-                  <%= link_to ' About', home_about_path, class: 'glyphicon glyphicon-link about' %></li>
-                <li class="nav-list-item">
-                  <%= link_to ' 商品一覧', products_path, class: 'glyphicon glyphicon-th index' %></li>
-                <li class="nav-list-item">
-                  <%= link_to ' 新規登録', new_client_registration_path, class: 'glyphicon glyphicon-edit sign_up' %></li>
-                <li class="nav-list-item">
-                  <%= link_to ' ログイン', new_client_session_path, class: 'glyphicon glyphicon-log-in sign_in' %></li>
+                    <li class="nav-list-item">
+                      <%= link_to ' About', home_about_path, class: 'glyphicon glyphicon-link item' %>
+                    </li>
+                    <li class="nav-list-item">
+                      <%= link_to ' 商品一覧', products_path, class: 'glyphicon glyphicon-th item' %>
+                    </li>
+                    <li class="nav-list-item">
+                      <%= link_to ' 新規登録', new_client_registration_path, class: 'glyphicon glyphicon-edit item' %>
+                    </li>
+                    <li class="nav-list-item">
+                      <%= link_to ' ログイン', new_client_session_path, class: 'glyphicon glyphicon-log-in item' %>
+                    </li>
 
-              <% end %>
-        </ul>
-      </nav>
+                  <% end %>
+            </nav>
+          </div>
+        </nav>
+      </div>
     </header>
 
-    <main>
-      <div class="main-visual">
-        <div class="container">
-          <%= content_for?(:content) ? yield(:content) : yield %>
+    <div class="v_line_fix">
+      <main>
+        <div class="main-visual">
+          <div class="container">
+            <%= content_for?(:content) ? yield(:content) : yield %>
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
 
     <div class="box4">
       <footer style="background-color: #f0f0f4;">
@@ -112,9 +132,5 @@
         <p>©︎ Kaninikutomato.inc</p>
       </footer>
     </div>
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/skippr.min.js"></script>
-    <script src="js/script.js"></script>
   </body>
 </html>
