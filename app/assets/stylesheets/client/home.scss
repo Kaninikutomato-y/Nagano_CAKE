@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/* home/about */
 
 .h1_about {
 	margin-right: 50px;
@@ -41,4 +42,28 @@
 .box_about p {
     margin: 0;
     padding: 0;
+}
+
+/* home/top */
+
+.h1_pickup {
+    margin-bottom: 18px;
+    border-bottom: 1px solid gray;
+}
+
+.pickup p {
+    margin-bottom: 20px;
+}
+
+.more {
+    text-align: right;
+}
+
+.top_box {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.top_image {
+    margin-bottom: 40px;
 }
