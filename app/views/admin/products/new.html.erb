@@ -2,7 +2,6 @@
 
   <div class="apn-block">
     <h2 class="apn-h2">商品新規登録</h2>
-      <%= form_for @product,:url => {controller: "products", action: "create"} do |f| %>
 
       <% if @product.errors.any? %>
         <div class="alert alert-danger">
