@@ -2,11 +2,11 @@
 
   <div class="aps-block">
     <h2 class="aps-h2">商品詳細</h2>
-    <div class="aps-img col-lg-6">
+    <div class="aps-img col-lg-7">
       <%= attachment_image_tag @product, :image ,style: "width: 480px; height: 270px;" %>
     </div>
 
-    <div class="product-box col-lg-6">
+    <div class="product-box col-lg-5">
       <div class="v_line_left">
         <table>
             <tr>
@@ -35,7 +35,7 @@
     </div>
   </div>
 
-    <div class="button-a">
+    <div class="aps-btn">
       <%= link_to "編集する", edit_admin_product_path(@product), class: "btn btn-primary" %>
     </div>
   </div>
