@@ -1,9 +1,6 @@
 class DeliveriesController < ApplicationController
 
   before_action :authenticate
-  def authenticate
-    redirect_to new_client_session_url unless client_signed_in?
-  end
 
   def index
     @delivery = Delivery.new
@@ -47,6 +44,13 @@ class DeliveriesController < ApplicationController
   private
   def delivery_params
     params.require(:delivery).permit(:postcode, :address, :name).merge(client_id: current_client.id)
+  end
+
+  def authenticate
+    unless client_signed_in?
+      redirect_to new_client_session_url
+      flash[:notice] = "ここから先はログインが必要です!!"
+    end
   end
 end
 

@@ -14,42 +14,48 @@
         </div>
       <% end %>
 
-    <%= form_for @product,:url => {controller: "products", action: "update"} do |f| %>
+      <div class="ape-img col-lg-7">
+        <%= form_for @product,:url => {controller: "products", action: "update"} do |f| %>
 
-    <div class="ape-img col-lg-6">
-      <img id="img_prev" width=320 height=180 src="#" class='hidden' />
-      <%= attachment_image_tag @product, :image, fallback: "noimage.jpg", size:"480x270", class: 'default_img' %>
+        <img id="img_prev" width=480 height=270 src="#" class='hidden' />
+        <%= attachment_image_tag @product, :image, fallback: "noimage.jpg", size:"480x270", class: 'default_img' %>
 
-      <div class="attachment_field">
-        <%= f.attachment_field :image, :id => 'post_img' %>
+        <div class="ape-attachment_field">
+          <%= f.attachment_field :image, :id => 'post_img' %>
+        </div>
+        <% end %>
       </div>
-    </div>
 
-    <div class="ape-form col-lg-6">
-      <div class="field">
-          <%= f.label :商品名 %>
-          <%= f.text_field :name %>
-      </div>
-      <div class="field">
-          <%= f.label :商品説明 %>
-          <%= f.text_area :explanation %>
-      </div>
-      <div class="field">
-          <%= f.label :ジャンル %>
-          <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "-- 選択して下さい --" %>
-      </div>
-      <div class="field">
-          <%= f.label :税抜き価格 %>
-          <%= f.text_field :price %>円
-      </div>
-      <div class="field">
-          <%= f.label :販売ステータス %>
-          <%= f.select :sale_status, [["販売中", "true"], ["売り切れ", "false"]], include_blank: "-- 選択して下さい --" %>
-      </div>
-      <div class="field">
-          <%= f.submit "変更を保存", class: "btn btn-primary" %>
-      </div>
-      <% end %>
+
+      <div class="ape-form col-lg-5">
+        <%= form_for @product,:url => {controller: "products", action: "update"} do |f| %>
+        <table>
+          <tr>
+            <th class="ape-th"><%= f.label :商品名 %></th>
+            <td class="ape-td"><%= f.text_field :name, size: "19×10" %></td>
+          </tr>
+          <tr>
+            <th class="ape-th"><%= f.label :商品説明 %></th>
+            <td class="ape-td"><%= f.text_area :explanation, :size => "18×10" %></td>
+          </tr>
+          <tr>
+            <th class="ape-th"><%= f.label :ジャンル %></th>
+            <td class="ape-td"><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "-- 選択して下さい --" %></td>
+          </tr>
+          <tr>
+            <th class="ape-th"><%= f.label :税抜き価格 %></th>
+            <td class="ape-td"><%= f.text_field :price, size: "19×10" %>円</td>
+          </tr>
+          <tr>
+            <th class="ape-th"><%= f.label :販売ステータス %></th>
+            <td class="ape-td"><%= f.select :sale_status, [["販売中", "true"], ["売り切れ", "false"]], include_blank: "-- 選択して下さい --" %></td>
+          </tr>
+                  <tr>
+                    <td><%= f.submit "変更を保存", class: "btn btn-primary" %></td>
+                    </tr>
+        </table>
+              <% end %>
+
     </div>
   </div>
 </div>

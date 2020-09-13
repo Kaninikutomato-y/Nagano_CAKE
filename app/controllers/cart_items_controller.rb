@@ -1,9 +1,6 @@
 class CartItemsController < ApplicationController
 
   before_action :authenticate
-  def authenticate
-    redirect_to new_client_session_url unless client_signed_in?
-  end
 
   def create
     @cart_item = CartItem.new(cart_item_params)
@@ -56,4 +53,10 @@ class CartItemsController < ApplicationController
     params.require(:cart_item).permit(:product_id, :quantity)
   end
 
+  def authenticate
+    unless client_signed_in?
+      redirect_to new_client_session_url
+      flash[:notice] = "ここから先はログインが必要です!!"
+    end
+  end
 end

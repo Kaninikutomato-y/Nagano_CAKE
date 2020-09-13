@@ -2,9 +2,6 @@ class Client::OrdersController < ApplicationController
 
   before_action :set_client
   before_action :authenticate
-  def authenticate
-    redirect_to new_client_session_url unless client_signed_in?
-  end
 
   def new
     @order = Order.new
@@ -31,14 +28,14 @@ class Client::OrdersController < ApplicationController
       end
       @order.save
 
-
-      @delivery = Delivery.new
-      @delivery.postcode = @order.postcode
-      @delivery.address = @order.address
-      @delivery.name = @order.name
-      @delivery.client_id = current_client.id
-      @delivery.save
-
+      if Order.find_by(address: @order.address).nil?
+        @delivery = Delivery.new
+        @delivery.postcode = @order.postcode
+        @delivery.address = @order.address
+        @delivery.name = @order.name
+        @delivery.client_id = current_client.id
+        @delivery.save
+      end
 
       current_client.cart_items.each do |cart_item|
         order_item = @order.order_items.build
@@ -105,5 +102,12 @@ class Client::OrdersController < ApplicationController
       :address, :name, :status, :pay_method, :postcode, :freight, :billed_amount,
       order_items_attributes: [:order_id, :product_id, :quantity, :price, :production_status]
       )
+  end
+
+  def authenticate
+    unless client_signed_in?
+      redirect_to new_client_session_url
+      flash[:notice] = "ここから先はログインが必要です!!"
+    end
   end
 end
