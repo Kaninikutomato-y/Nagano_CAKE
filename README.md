@@ -1,24 +1,41 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Nagano_CAKE
+-長野県にある架空の洋菓子店「ながのCAKE」のECデモサイトを練習として作成
+![demo](https://user-images.githubusercontent.com/67945242/93012975-7785f000-f5df-11ea-9535-2578dd24842a.png)
 
-Things you may want to cover:
 
-* Ruby version
+## Dependency
+-Ruby on Rails 
+-Ruby 2.5.7
+-Rails 5.2.4.3
+-gem 'devise'
+-gem "refile", require: "refile/rails", github: 'manfe/refile'
+-gem "refile-mini_magick"
+-gem 'bootstrap-sass  3.3.6
+-gem 'jquery-rails'
+-gem 'kaminari  1.2.1
+-gem 'font-awesome-sass'
 
-* System dependencies
+## Usage
+Vagrant環境を構築
+git clone URL
+rails s -b 0.0.0.0でサーバーを起動
+ブラウザでlocalhost:3000/にアクセス(GoogleCrome推奨)
 
-* Configuration
+-会員側と管理者側でそれぞれログインできます。
+-管理者側は、商品登録・ジャンル登録・会員の情報を編集できたりします。
+-会員側は、カート機能を利用して商品を購入できたりします。
 
-* Database creation
+## License
+This software is released under the XXX License, see LICENSE.
 
-* Database initialization
+## Authors
+カニニクトマト(Junji, Kubo, Ino, Maeta)
 
-* How to run the test suite
+## References
+-注文機能
+https://qiita.com/GreenFingers_tk/items/ed5219e1e0cdd5e5d1b1
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+-カート機能
+https://qiita.com/kenzo-ta/items/b45994c5f3fdd87b6c50
