@@ -27,19 +27,25 @@
 }
 
 .v_line_fix {
-    margin-left: 50px;
-    width: 20px;
+    margin-left: 40px;
+    width: 15px;
     height: 100%;
-    background-color:#be002f;
+    background-color: #be002f;
+}
+
+body {
+    background-color: #eedeb0;
+    padding-top: 140px;
 }
 
 thead {
-  background-color: F0F0F4;
+    background-color: F0F0F4;
 }
 
 .logo {
-    margin-left: 25px;
-    padding-bottom: 15px;
+    margin-left: 32px;
+    padding-top: 22px;
+    padding-bottom: 21px;
 }
 
 .header_top {
@@ -47,18 +53,20 @@ thead {
     height: 25px;
 }
 
-header {
-    border-bottom: 20px solid #3333ff;
+.navbar-fixed-top {
+    border-bottom: 20px solid #2e4e7e;
+    background-color: #eedeb0;
 }
 
 .flash {
-    margin-top: 2px;
-    margin-right: 20px;
-    float: right;
+    margin-bottom: 35px;
+    margin-right: 125px;
+    text-align: center;
 }
 
 .search-button {
     margin-top: 15px;
+    margin-left: 10px;
 }
 
 .navbar {
@@ -66,14 +74,12 @@ header {
 }
 
 .nav-list-item {
-    margin-top: 20px;
-    margin-right: 13px;
-    font-size: 13px;
+    margin-top: 35px;
+    font-size: 15px;
 }
 
 .navbar-text {
-    margin-right: 20px;
-    margin-top: 36px;
+    margin-top: 53px;
 }
 
 .item {
@@ -84,20 +90,32 @@ header {
     color: black;
 }
 
+.nav-dropdown {
+    margin-top: 38px;
+    margin-right: 5px;
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+ul.dropdown-menu {
+    text-align: center;
+}
+
 td, th {
     padding: 8px;
 }
 
 main {
-    padding-top: 35px;
-    padding-bottom: 20px;
+    padding-top: 50px;
+    padding-bottom: 40px;
+    padding-left: 50px;
 }
 
-.box4 {
+.footer-box {
     color: #2c2c2f;
     background: #f0f0f4;
-    border-top: solid 4px #be002f;
-    border-bottom: solid 4px #be002f;
+    border-top: solid 7px #2e4e7e;
+    border-bottom: solid 7px #be002f;
 }
 
 footer p {

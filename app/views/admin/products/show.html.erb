@@ -26,7 +26,7 @@
               <td class="aps-td"><%= price_tax(@product.price).to_s(:delimited) %>(<%= @product.price.to_s(:delimited) %>)円</td>
             </tr>
             <tr>
-              <th class="aps-th">販売<br>ステータス</td>
+              <th class="aps-th">販売ステータス</td>
               <td class="aps-td"><% if @product.sale_status == true %>販売中
                   <% else %>売り切れ
                   <% end %></td>
