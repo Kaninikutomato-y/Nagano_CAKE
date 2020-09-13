@@ -59,12 +59,23 @@
     text-align: center;
 }
 
-.pickup p {
+.home-index-name {
     margin-bottom: 20px;
+    padding-top: 10px;
+    color: black;
+}
+
+.home-index-name:hover {
+    color: black;
 }
 
 .more {
+    color: black;
     text-align: right;
+}
+
+.more:hover {
+    color: black;
 }
 
 .top_box {

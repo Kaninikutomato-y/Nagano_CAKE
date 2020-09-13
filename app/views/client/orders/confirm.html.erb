@@ -5,7 +5,7 @@
 <%= form_with(model: @order, local: true) do |f| %>
 <div class="row" style="margin-top: 30px;">
 	<table class="order col-lg-8">
-		<thead style="background-color: #F0F0F4; font-size: 16px;">
+		<thead style="background-color: #fff2df; font-size: 16px;">
 			<tr>
 				<th>商品名</th>
 				<th style="text-align: center;">単価(税込)</th>
@@ -38,16 +38,16 @@
 	<table class="order col-lg-3">
 		<tbody style="font-size: 18px;">
 			<tr>
-				<td class="col-lg-5" style="background-color: #F0F0F4;">送料</td>
+				<td class="col-lg-5" style="background-color: #d6ecf0;">送料</td>
 				<td class="col-lg-7" style="text-align: right;"><%= @order.freight.to_s(:delimited) %>円
 					<% @order.freight.to_i %></td>
 			</tr>
 			<tr>
-				<td class="col-lg-5" style="background-color: #F0F0F4;">商品合計</td>
+				<td class="col-lg-5" style="background-color: #d6ecf0;">商品合計</td>
 				<td class="col-lg-7" style="text-align: right;"><%= sum_all.to_s(:delimited) %><% sum_all.to_i %>円</td>
 			</tr>
 			<tr>
-				<td class="col-lg-5" style="background-color: #F0F0F4;">請求金額</td>
+				<td class="col-lg-5" style="background-color: #d6ecf0">請求金額</td>
 				<% billed_amount = sum_all + @order.freight.to_i %>
 				<td class="col-lg-7" style="text-align: right;"><strong><%=billed_amount.to_s(:delimited) %>円</strong>
 				<% billed_amount.to_i %></td>

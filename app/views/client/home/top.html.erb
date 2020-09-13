@@ -2,11 +2,13 @@
 	<div class="row">
 	    <div class="pickup col-xs-3">
 	    	<h1 class="h1_pickup">Pick UP</h1>
-	    	<p>・〇〇ケーキ</p>
-	    	<p>・〇〇ケーキ</p>
-	    	<p>・〇〇ケーキ</p>
-	    	<p>・〇〇ケーキ</p>
-	    	<p>・〇〇ケーキ</p>
+	    	<% @products.first(4).each do |product| %>
+	    		<%= link_to product_path(product) do %>
+	    			<div class="home-index-name">
+	    				・ <%= product.name %>
+	    			</div>
+    			<% end %>
+	    	<% end %>
 	    	<div class="more"><%= link_to 'もっと見る ＞＞', products_path %></div>
 	    </div>
 
