@@ -10,18 +10,15 @@
 
   <body>
     <header>
-      <div class="v_line_fix">
-        <div class="header_top">
-          <p class="flash"><%= flash[:notice] %></p>
-        </div>
-
-        <nav class="navbar navbar-static-top">
+      <nav class="navbar navbar-fixed-top">
+        <div class="v_line_fix">
           <div class="container">
             <nav class="nav navbar-nav navbar-left">
               <div class="logo">
-                <%= link_to image_tag('NCL-color.png', style: "height: 85px;"), home_top_path %>
+                <%= link_to image_tag('NCL-color.png', style: "height: 80px;"), home_top_path %>
               </div>
             </nav>
+
             <nav class="nav navbar-nav navbar-right">
                   <% if client_signed_in? %>
 
@@ -49,18 +46,19 @@
                     <li class="nav-list-item">
                       <%= link_to ' ホーム', admin_home_top_path, class: 'glyphicon glyphicon-home item' %>
                     </li>
-                    <li class="nav-list-item">
-                      <%= link_to ' 商品一覧', admin_products_path, class: 'glyphicon glyphicon-th item' %>
+
+                    <li class="nav-dropdown dropdown">
+                      <a class="dropdown-toggle item" data-toggle="dropdown">
+                        <i class="glyphicon glyphicon-th item"></i> 一覧表示 <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li role="presentation"><%= link_to ' 商品一覧', admin_products_path %></li>
+                        <li role="presentation"><%= link_to ' 会員一覧', admin_clients_path %></li>
+                        <li role="presentation"><%= link_to ' 注文履歴一覧', admin_orders_path %></li>
+                        <li role="presentation"><%= link_to ' ジャンル一覧', admin_genres_path %></li>
+                      </ul>
                     </li>
-                    <li class="nav-list-item">
-                      <%= link_to ' 会員一覧', admin_clients_path, class: 'glyphicon glyphicon-th item' %>
-                    </li>
-                    <li class="nav-list-item">
-                      <%= link_to ' 注文履歴一覧', admin_orders_path, class: 'glyphicon glyphicon-th item' %>
-                      </li>
-                    <li class="nav-list-item">
-                      <%= link_to ' ジャンル一覧', admin_genres_path, class: 'glyphicon glyphicon-th item' %>
-                    </li>
+
                     <li class="nav-list-item">
                       <%= link_to ' ログアウト', destroy_client_session_path, method: :delete, class: 'glyphicon glyphicon-log-out item' %>
                     </li>
@@ -105,32 +103,37 @@
                   <% end %>
             </nav>
           </div>
-        </nav>
-      </div>
+        </div>
+      </nav>
     </header>
 
     <div class="v_line_fix">
       <main>
         <div class="main-visual">
           <div class="container">
+            <P class="flash"><%= flash[:notice] %></P>
             <%= content_for?(:content) ? yield(:content) : yield %>
           </div>
         </div>
       </main>
     </div>
 
-    <div class="box4">
+    <div class="footer-box">
       <footer style="background-color: #f0f0f4;">
-        <% if client_signed_in? %>
-          <P><%= link_to 'Click here for the administrator', admin_session_path %></P>
-        <% elsif admin_signed_in? %>
-          <P><%= link_to 'Click here for the client', client_session_path %></P>
-        <% else %>
-          <P><%= link_to 'Click here for the administrator', admin_session_path %>
-           or 
-          <%= link_to 'Click here for the members', client_session_path %></P>
-        <% end %>
-        <p>©︎ Kaninikutomato.inc</p>
+        <div class="v_line_fix">
+          <div class="container">
+            <% if client_signed_in? %>
+              <P><%= link_to 'Click here for the administrator', admin_session_path %></P>
+            <% elsif admin_signed_in? %>
+              <P><%= link_to 'Click here for the client', client_session_path %></P>
+            <% else %>
+              <P><%= link_to 'Click here for the administrator', admin_session_path %>
+                or 
+              <%= link_to 'Click here for the members', client_session_path %></P>
+            <% end %>
+            <p>©︎ Kaninikutomato.inc</p>
+          </div>
+        </div>
       </footer>
     </div>
   </body>

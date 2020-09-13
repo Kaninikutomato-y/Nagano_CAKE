@@ -5,24 +5,27 @@
 /* home/about */
 
 .h1_about {
-	margin-right: 50px;
+    display: inline-block;
+	margin-right: 35px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid gray;
 }
 
 .client_about {
 	text-align: center;
-	margin-right: 15px;
+    padding-right: 100px;
 }
 
 .about_image {
-	text-align: center;
-	margin-right: 30px;
 	margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .box_about {
+    display: inline-block;
     margin: 15px 0;
     position: relative;
-    padding: 15px 15px;
+    padding: 20px 40px;
     border-top: solid 2px gray;
     border-bottom: solid 2px gray;
 }
@@ -46,9 +49,14 @@
 
 /* home/top */
 
+.pickup {
+    height: 300px;
+}
+
 .h1_pickup {
     margin-bottom: 18px;
     border-bottom: 1px solid gray;
+    text-align: center;
 }
 
 .pickup p {
@@ -66,4 +74,16 @@
 
 .top_image {
     margin-bottom: 40px;
+}
+
+.top_box p {
+    font-size: 20px;
+}
+
+h4 {
+    text-align: center;
+}
+
+.genre_search {
+    margin-top: 50px;
 }

@@ -1,13 +1,13 @@
 <div class="container">
 	<div class="row">
-	    <div class="pickup col-xs-offset-1 col-xs-3">
+	    <div class="pickup col-xs-3">
 	    	<h1 class="h1_pickup">Pick UP</h1>
 	    	<p>・〇〇ケーキ</p>
 	    	<p>・〇〇ケーキ</p>
 	    	<p>・〇〇ケーキ</p>
 	    	<p>・〇〇ケーキ</p>
 	    	<p>・〇〇ケーキ</p>
-	    	<div class="more"><%= link_to 'もっと見る＞', products_path %></div>
+	    	<div class="more"><%= link_to 'もっと見る ＞＞', products_path %></div>
 	    </div>
 
 	    <div class="col-xs-8">
@@ -22,18 +22,19 @@
 		    </div>
 		</div>
     </div>
+
 	<div class="row">
-    	<div class="col-xs-offset-1 col-xs-2">
+    	<div class="col-xs-3">
     		<div class="genre_search">
 	    		<%= render 'client/products/list', genres:@genres %>
 	    	</div>
 	    </div>
-    	<div class="col-xs-offset-3 col-xs-5">
+    	<div class="col-xs-offset-2 col-xs-7">
     		<div class="top_box">
 		    	<div class="top_image">
-		    		<%= image_tag('NCL-color.png', style: "width: 350px;") %>
+		    		<%= image_tag('NCL-color.png', style: "width: 400px;") %>
 		    	</div>
-		    	<p class="h4">ようこそNaganoCakeへ！<br>
+		    	<p>ようこそNaganoCakeへ！<br>
 		    		このサイトは、ケーキ販売のECサイトになります。<br>
 		    		会員でない方も商品の閲覧はできますが、<br>
 		    		購入には会員登録が必要になります。
