@@ -3,8 +3,7 @@ class Client::ClientsController < ApplicationController
   before_action :authenticate
   def authenticate
     redirect_to new_client_session_url unless client_signed_in?
-    flash[:notice] = "ここから先はログインが必要です!!"
-  end
+   end
 
   def show
     @client = Client.find(params[:id])
