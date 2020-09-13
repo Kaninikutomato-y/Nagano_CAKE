@@ -19,7 +19,7 @@ class Admin::OrderItemsController < ApplicationController
 			order_item.order.update(status: 3)
 		end
   	end
-  	redirect_to admin_orders_path
+  	redirect_to admin_order_path(order_item.order)
   end
 
   private

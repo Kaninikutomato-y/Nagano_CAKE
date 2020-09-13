@@ -4,7 +4,7 @@
 
 <div class="row">
 	<table class="order col-lg-12">
-		<thead style="background-color: #F0F0F4; font-size: 16px;">
+		<thead style="background-color: #FFF2DF; font-size: 16px;">
 			<tr>
 				<th class="col-lg-2">注文日</th>
 				<th class="col-lg-3">配送先</th>
@@ -16,7 +16,7 @@
 		</thead>
 		<tbody style="font-size: 18px;">
 			<% @orders.each do |order| %>
-				<tr>
+				<tr style="border-bottom: solid 2px gray">
 					<td><%= order.created_at.to_s(:datetime_jp) %></td>
 					<td>
 						<%= order.postcode %><br>
