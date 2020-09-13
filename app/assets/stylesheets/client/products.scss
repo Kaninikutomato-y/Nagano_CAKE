@@ -56,3 +56,51 @@
   -moz-transition: 0.4s ease-in-out;
   -webkit-transition: 0.4s ease-in-out;
 }
+
+.cpi-h2 {
+  margin-left: 8%;
+}
+
+.cps-h2 {
+  margin-left: 20%
+}
+.cps-name {
+  font-size: 30px;
+}
+.cps-exp {
+  margin-top: 20px;
+}
+.cps-price {
+  margin-top: 10px;
+  font-size: 20px;
+}
+.cps-sale {
+  margin-top: 20px;
+  text-align: right;
+}
+.soldout-sf {
+  width:200px;
+  margin:7px 0 5px 10px;
+  position:relative;
+}
+.soldout-sc {
+  right: 0%;
+  padding:3px 12px;
+  font-weight:bold;
+  font-size:20px;
+  color:#fff;
+  background:#c00;
+  position:absolute;
+  -moz-box-shadow: 1px 1px 2px #333;
+  -webkit-box-shadow: 1px 1px 2px #333;
+  -moz-transition: 0.4s ease-in-out;
+  -webkit-transition: 0.4s ease-in-out;
+}
+.links {
+  color: #333333;
+  text-decoration: none;
+}
+.links:hover {
+  color: #333333;
+  text-decoration: none;
+}

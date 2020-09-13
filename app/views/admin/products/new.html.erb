@@ -1,48 +1,60 @@
+<div class="row">
 
-<h2>商品新規登録</h2>
-  <% if @product.errors.any? %>
-    <div class="alert alert-danger">
-      <h4><%= @product.errors.count %>件のエラーがあります。</h4>
-      <ul>
-        <% @product.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+  <div class="apn-block">
+    <h2 class="apn-h2">商品新規登録</h2>
+
+      <% if @product.errors.any? %>
+        <div class="alert alert-danger">
+          <h4><%= @product.errors.count %>件のエラーがあります。</h4>
+          <ul>
+            <% @product.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+        <%= form_for @product,:url => {controller: "products", action: "create"} do |f| %>
+        <div class="apn-img col-lg-7">
+
+        <img id="img_prev" width=480 height=270 src="#" class='hidden' />
+        <%= attachment_image_tag @product, :image, fallback: "noimage.jpg", size:"480x270", class: 'default_img' %>
+
+        <div class="apn-attachment_field">
+          <%= f.attachment_field :image, :id => 'post_img' %>
+        </div>
+      </div>
+
+      <div class="apn-form col-lg-5">
+        <table>
+          <tr>
+            <th class="apn-th"><%= f.label :商品名 %></th>
+            <td class="apn-td"><%= f.text_field :name, size: "19×10" %></td>
+          </tr>
+          <tr>
+            <th class="apn-th"><%= f.label :商品説明 %></th>
+            <td class="apn-td"><%= f.text_area :explanation, size: "18×10" %></td>
+          </tr>
+          <tr>
+            <th class="apn-th"><%= f.label :ジャンル %></th>
+            <td class="apn-td"><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "-- 選択して下さい --" %></td>
+          </tr>
+          <tr>
+            <th class="apn-th"><%= f.label :税抜き価格 %></th>
+            <td class="apn-td"><%= f.text_field :price, size: "19×10" %>円</td>
+          </tr>
+          <tr>
+            <th class="apn-th"><%= f.label :販売ステータス %></th>
+            <td class="apn-td"><%= f.select :sale_status, [["販売中", "true"], ["売り切れ", "false"]], include_blank: "-- 選択して下さい --" %></td>
+          </tr>
+        </table>
+        <div class="apn-btn">
+          <%= f.submit "新規登録", class: "btn btn-primary" %>
+        </div>
         <% end %>
-      </ul>
     </div>
-  <% end %>
-<%= form_for @product,:url => {controller: "products", action: "create"} do |f| %>
-
-  <img id="img_prev" width=320 height=180 src="#" class='hidden' />
-  <%= attachment_image_tag @product, :image, fallback: "noimage.jpg", size:"320x180", class: 'default_img' %>
-
-  <div class="attachment_field">
-    <%= f.attachment_field :image, :id => 'post_img' %>
   </div>
-
-  <div class="field">
-      <%= f.label :商品名 %>
-      <%= f.text_field :name %>
-  </div>
-  <div class="field">
-      <%= f.label :商品説明 %>
-      <%= f.text_area :explanation %>
-  </div>
-  <div class="field">
-      <%= f.label :ジャンル %>
-      <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "-- 選択して下さい --" %>
-  </div>
-  <div class="field">
-      <%= f.label :税抜き価格 %>
-      <%= f.text_field :price %>円
-  </div>
-  <div class="field">
-      <%= f.label :販売ステータス %>
-      <%= f.select :sale_status, [["販売中", "true"], ["売り切れ", "false"]], include_blank: "-- 選択して下さい --" %>
-  </div>
-  <div class="field">
-      <%= f.submit "新規登録", class: "btn btn-primary" %>
-  </div>
-  <% end %>
+</div>
 
 <%# ここから画像プレビュー機能(jquery) %>
 <script>

@@ -1,63 +1,68 @@
-<h2><%= @client.last_name %><%= @client.first_name %>さんの会員情報編集</h2>
-  <% if @client.errors.any? %>
-    <div class="alert alert-danger">
-      <h4><%= @client.errors.count %>件のエラーがあります。</h4>
-      <ul>
-        <% @client.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-mt-2">
+    <h2><%= @client.last_name %><%= @client.first_name %>さんの会員情報編集</h2>
+      <% if @client.errors.any? %>
+        <div class="alert alert-danger">
+          <h4><%= @client.errors.count %>件のエラーがあります。</h4>
+          <ul>
+            <% @client.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-
-  <div class="field">
-    会員ID
-    <%= @client.id %>
-  </div>
 
 <%= form_for @client,:url => {controller: "clients", action: "update"} do |f| %>
+<table>
+  <tr>
+    <td scop="col">会員ID</td>
+    <td scop="col"><%= @client.id %></td>
+    <td colspan="1"></td>
+  </tr>
+  <tr>
+    <td><%= f.label :名前 %></td>
+    <td><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %></td>
+    <td><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %></td>
+   
+  </tr>
+  <tr>
+    <td><%= f.label :フリガナ %></td>
+    <td><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %></td>
+    <td><%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %></td>
 
- <div class="field">
-    <%= f.label :名前 %>
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :フリガナ %>
-    <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
-    <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :郵便番号（ハイフンなし） %>
-    <%= f.text_field :postcode, autofocus: true, autocomplete: "postcode" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :住所 %>
-    <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :電話番号（ハイフンなし） %>
-    <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :メールアドレス %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :会員ステータス %>
-    <%= f.radio_button :is_deleted, "false" %>有効
-    <%= f.radio_button :is_deleted, "true" %>退会済み
-  </div>
+  </tr>
+  <tr>
+    <td><%= f.label :郵便番号（ハイフンなし） %></td>
+    <td><%= f.text_field :postcode, autofocus: true, autocomplete: "postcode" %></td>
+    <td colspan="1"></td>
+  </tr>
+  <tr>
+    <td><%= f.label :住所 %></td>
+    <td colspan="2"><%= f.text_field :address, autofocus: true, autocomplete: "address", class: "hogehoge", size: "60x50" %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :電話番号（ハイフンなし） %></td>
+    <td><%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %></td>
+    <td colspan="1"></td>
+  </tr>
+  <tr>
+    <td><%= f.label :メールアドレス %></td>
+    <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+    <td colspan="1"></td>
+  </tr>
+  <tr>
+    <td><%= f.label :会員ステータス %></td>
+    <td><%= f.radio_button :is_deleted, "false" %>有効
+        <%= f.radio_button :is_deleted, "true" %>退会済み</td>
+  </tr>
+</table>
 
   <div class="actions">
-    <%= f.submit "変更を保存する" %>
+    <%= f.submit "変更を保存する", class: "btn btn-primary" %>
   </div>
-
 <% end %>
+</div>
+</div>
+</div>

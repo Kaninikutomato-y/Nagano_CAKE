@@ -1,9 +1,10 @@
 class Admin::OrdersController < ApplicationController
 
     before_action :authenticate_admin!
+    PER = 10
 
   def index
-  	@orders = Order.all
+  	@orders = Order.page(params[:page]).per(PER)
   end
 
   def show
@@ -19,7 +20,7 @@ class Admin::OrdersController < ApplicationController
         @order_items.update(production_status: 1)
       end
     end
-  	redirect_to admin_orders_path
+  	redirect_to admin_order_path(@order)
   end
 
   private
