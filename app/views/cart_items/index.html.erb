@@ -1,16 +1,17 @@
 <div class="container">
 	<div class="row">
-      <div class="text-left"><h2>ショッピングカート</h2></div>
+      <div class="col-mt-1">
+      	<h2>ショッピングカート</h2>
   　　　　<div class="text-right">
     　　　　<%= link_to 'カートを空にする', destroy_all_cart_items_path, method: :delete, class: "btn btn-danger btn-xs" %>
   　　　　</div>
 
-　　　　　　<table class="table">
+　　　　　　<table class="table table-bordered">
 	　　　　　<thead>
-	　　　　　	<tr class="active">
+	　　　　　	<tr>
 			　　　<th>商品名</th>
-		　　　　　	<th>単価（税込）</th>
-		　　　　　	<th>数量</th>
+		　　　　　	<th style="width:15%">単価（税込）</th>
+		　　　　　	<th style="width:15%">数量</th>
 		　　　　　	<th>小計</th>
 			　　　　　<th colspan=""></th>
 		　　　　　</tr>
@@ -20,7 +21,7 @@
 	         <tbody>
 	        	<tr>
 	        		<td>
-					    <%= attachment_image_tag(cart_item.product, :image, :fill, 50, 50) %>
+					    <%= attachment_image_tag(cart_item.product, :image, :fill, 60, 60) %>
 					    <%= cart_item.product.name %>
 				    </td>
 			        <td>

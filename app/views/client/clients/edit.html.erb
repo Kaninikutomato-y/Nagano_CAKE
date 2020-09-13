@@ -51,13 +51,17 @@
       <td><%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %></td>
       <td colspan="2"></td>
     </tr>
+    <tr>
+      <td colspan="4"></td>
+      <td>
+        <div class="actions">
+          <%= f.submit "登録内容を保存する", class: "btn btn-success btn-sm" %>
+          <% if client_signed_in? && @client.id == current_client.id %>
+            <%= link_to '退会する', unsubscribe_client_path(@client), class: "btn btn-danger btn-sm" %>
+          <% end %>
+        </div>
+      </td>
 </table>
-  <div class="actions">
-    <%= f.submit "登録内容を保存する" %>
-    <% if client_signed_in? && @client.id == current_client.id %>
-      <%= link_to '退会する', unsubscribe_client_path(@client), class: "btn btn-danger btn-sm" %>
-    <% end %>
-  </div>
 <% end %>
 
   </div>
