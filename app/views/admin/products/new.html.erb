@@ -15,8 +15,8 @@
         </div>
       <% end %>
 
-      <div class="apn-img col-lg-7">
-
+        <%= form_for @product,:url => {controller: "products", action: "create"} do |f| %>
+        <div class="apn-img col-lg-7">
 
         <img id="img_prev" width=480 height=270 src="#" class='hidden' />
         <%= attachment_image_tag @product, :image, fallback: "noimage.jpg", size:"480x270", class: 'default_img' %>
@@ -49,8 +49,10 @@
             <td class="apn-td"><%= f.select :sale_status, [["販売中", "true"], ["売り切れ", "false"]], include_blank: "-- 選択して下さい --" %></td>
           </tr>
         </table>
-        <%= f.submit "新規登録", class: "btn btn-primary" %>
-      <% end %>
+        <div class="apn-btn">
+          <%= f.submit "新規登録", class: "btn btn-primary" %>
+        </div>
+        <% end %>
     </div>
   </div>
 </div>

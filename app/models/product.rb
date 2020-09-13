@@ -5,7 +5,7 @@ class Product < ApplicationRecord
   attachment :image
 
   validates :name, :price, presence: true
-  validates :explanation, presence: true, length: { maximum: 50 }
+  validates :explanation, presence: true, length: { maximum: 200 }
   validates :sale_status, inclusion: { in: [true, false]}
 
 
