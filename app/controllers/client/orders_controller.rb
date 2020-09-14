@@ -28,7 +28,7 @@ class Client::OrdersController < ApplicationController
       end
       @order.save
 
-      if Order.find_by(address: @order.address).nil?
+      unless Delivery.find_by(address: @order.address)
         @delivery = Delivery.new
         @delivery.postcode = @order.postcode
         @delivery.address = @order.address
