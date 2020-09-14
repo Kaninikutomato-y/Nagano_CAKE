@@ -5,7 +5,7 @@
           <tr>
             <td>顧客ID</td>
             <td><%= @client.id %>
-              <% if @client.is_deleted == true %>退会済み
+              <% if @client.is_deleted == true %><span class="label label-info">退会済み</span>
               <% else %><span class="label label-info">有効会員</span>
               <% end %>
             </td>

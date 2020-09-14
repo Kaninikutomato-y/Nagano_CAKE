@@ -19,7 +19,7 @@
 　　         <% sum_all = 0 %>
 	         <% @cart_items.each do |cart_item| %>
 	         <tbody>
-	        	<tr>
+	        	<tr style="border-bottom: solid 2px gray">
 	        		<td>
 					    <%= attachment_image_tag(cart_item.product, :image, :fill, 60, 60) %>
 					    <%= cart_item.product.name %>
