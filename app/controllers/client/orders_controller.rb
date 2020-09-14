@@ -81,7 +81,7 @@ class Client::OrdersController < ApplicationController
   end
 
   def index
-    @orders = @client.orders
+    @orders = @client.orders.order(id: "DESC")
   end
 
   def show
