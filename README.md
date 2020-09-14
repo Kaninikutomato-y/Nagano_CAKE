@@ -19,7 +19,7 @@
 
 ## Usage
 Vagrant環境を構築  
-git clone URL  
+git clone git@github.com:Kaninikutomato-y/Nagano_CAKE.git  
 rails s -b 0.0.0.0でサーバーを起動  
 ブラウザでlocalhost:3000/にアクセス(GoogleCrome推奨)  
   
