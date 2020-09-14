@@ -1,2 +1,79 @@
-<h1>Admin::Products#edit</h1>
-<p>Find me in app/views/admin/products/edit.html.erb</p>
+<div class="row">
+
+  <div class="ape-block">
+    <h2 class="ape-h2">商品編集</h2>
+
+      <% if @product.errors.any? %>
+        <div class="alert alert-danger">
+          <h4><%= @product.errors.count %>件のエラーがあります。</h4>
+          <ul>
+            <% @product.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+        <%= form_for @product,:url => {controller: "products", action: "update"} do |f| %>
+        <div class="ape-img col-lg-7">
+
+        <img id="img_prev" width=480 height=270 src="#" class='hidden' />
+        <%= attachment_image_tag @product, :image, fallback: "noimage.jpg", size:"480x270", class: 'default_img' %>
+
+        <div class="ape-attachment_field">
+          <%= f.attachment_field :image, :id => 'post_img' %>
+        </div>
+      </div>
+
+
+        <div class="ape-form col-lg-5">
+          <table>
+            <tr>
+              <th class="ape-th"><%= f.label :商品名 %></th>
+              <td class="ape-td"><%= f.text_field :name, size: "19×10" %></td>
+            </tr>
+            <tr>
+              <th class="ape-th"><%= f.label :商品説明 %></th>
+              <td class="ape-td"><%= f.text_area :explanation, :size => "18×10" %></td>
+            </tr>
+            <tr>
+              <th class="ape-th"><%= f.label :ジャンル %></th>
+              <td class="ape-td"><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "-- 選択して下さい --" %></td>
+            </tr>
+            <tr>
+              <th class="ape-th"><%= f.label :税抜き価格 %></th>
+              <td class="ape-td"><%= f.text_field :price, size: "19×10" %>円</td>
+            </tr>
+            <tr>
+              <th class="ape-th"><%= f.label :販売ステータス %></th>
+              <td class="ape-td"><%= f.select :sale_status, [["販売中", "true"], ["売り切れ", "false"]], include_blank: "-- 選択して下さい --" %></td>
+            </tr>
+          </table>
+          <div class="ape-btn">
+            <%= f.submit "変更を保存", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>
+
+<%# ここから画像プレビュー機能(jquery) %>
+<script>
+  $( document ).on('turbolinks:load', function() {
+    function readfile(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#img_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    $("#post_img").change(function(){
+      $('#img_prev').removeClass('hidden');
+      $('.default_img').remove();
+      readfile(this);
+    });
+  });
+</script>
+<%# ここまで画像プレビュー機能(jquery) %>

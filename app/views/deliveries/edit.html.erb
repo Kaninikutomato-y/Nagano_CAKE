@@ -1,2 +1,41 @@
-<h1>Deliveries#edit</h1>
-<p>Find me in app/views/deliveries/edit.html.erb</p>
+<div class="container">
+	<div class="row">
+	<h2>配送先編集</h2>
+		<% if @delivery.errors.any? %>
+			<div class="alert alert-danger">
+				<h4><%= @delivery.errors.count %>件のエラーがあります。</h4>
+				<ul>
+					<% @delivery.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+	</div>
+
+	<div class="row">
+		<div class="col-mt-1">
+
+		<%= form_for(@delivery) do |f| %>
+
+		<table>
+			<tr>
+				<td><%= f.label :郵便番号（ハイフンなし） %></td>
+				<td><%= f.text_field :postcode %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :住所 %></td>
+				<td><%= f.text_field :address, class: "hogehoge", size: "70x50" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :宛名 %></td>
+				<td><%= f.text_field :name %></td>
+				<td><div class="text-right">
+					<%= f.submit '編集する', class: "btn btn-primary" %></div>
+				</td>
+			</tr>
+		</table>
+		<% end %>
+		</div>
+	</div>
+</div>

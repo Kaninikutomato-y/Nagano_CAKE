@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <h2>登録情報編集</h2>
+    <% if @client.errors.any? %>
+      <div class="alert alert-danger">
+        <h4><%= @client.errors.count %>件のエラーがあります。</h4>
+        <ul>
+          <% @client.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+<%= form_for(@client) do |f| %>
+<table>
+    <tr>
+      <td scope="col"><%= f.label :名前 %></td>
+      <td scope="col">（姓）</td>
+      <td scope="col"><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %></td>
+      <td scope="col">（名）</td>
+      <td scope="col"><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :フリガナ %></th>
+      <td>（セイ）</td>
+      <td><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %></td>
+      <td>（メイ）</td>
+      <td><%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :メールアドレス %></th>
+      <td colspan="1"></td>
+      <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+      <td colspan="2"></td>
+    </tr>
+    <tr>
+      <td><%= f.label :郵便番号（ハイフンなし） %></th>
+      <td colspan="1"></td>
+      <td><%= f.text_field :postcode, autofocus: true, autocomplete: "postcode" %></td>
+      <td colspan="2"></td>
+    </tr>
+    <tr>
+      <td><%= f.label :住所 %></th>
+      <td></td>
+      <td colspan="3"><%= f.text_field :address, autofocus: true, autocomplete: "address", class: "hogehoge", size: "60x50" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :電話番号（ハイフンなし） %></th>
+      <td colspan="1"></td>
+      <td><%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %></td>
+      <td colspan="2"></td>
+    </tr>
+    <tr>
+      <td colspan="4"></td>
+      <td>
+        <div class="actions">
+          <%= f.submit "登録内容を保存する", class: "btn btn-success btn-sm" %>
+          <% if client_signed_in? && @client.id == current_client.id %>
+            <%= link_to '退会する', unsubscribe_client_path(@client), class: "btn btn-danger btn-sm" %>
+          <% end %>
+        </div>
+      </td>
+</table>
+<% end %>
+
+  </div>
+</div>

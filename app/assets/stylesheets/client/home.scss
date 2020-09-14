@@ -1,0 +1,126 @@
+// Place all the styles related to the public/home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* home/about */
+
+.h1_about {
+    display: inline-block;
+	margin-right: 35px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid gray;
+}
+
+.client_about {
+	text-align: center;
+    padding-right: 140px;
+}
+
+.about_image {
+	margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.box_about {
+    display: inline-block;
+    margin: 15px 0;
+    position: relative;
+    padding: 20px 40px;
+    border-top: solid 2px gray;
+    border-bottom: solid 2px gray;
+}
+
+.box_about:before, .box_about:after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    width: 2px;
+    height: -webkit-calc(100% + 20px);
+    height: calc(100% + 20px);
+    background-color: gray;
+}
+
+.box_about:before {left: 10px;}
+.box_about:after {right: 10px;}
+.box_about p {
+    margin: 0;
+    padding: 0;
+}
+
+/* home/top */
+
+.home-index-name {
+    margin-bottom: 23px;
+    padding-top: 12px;
+    color: black;
+    font-size: 16px;
+}
+
+.home-index-name:hover {
+    color: black;
+}
+
+.more {
+    color: black;
+    text-align: right;
+    padding-top: 20px;
+}
+
+.more:hover {
+    color: black;
+}
+
+.pickup {
+    margin-left: 55px;
+}
+
+.h1_pickup {
+    margin-bottom: 20px;
+    border-bottom: 1px solid gray;
+    text-align: center;
+}
+
+.pickup_2 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pickup-box {
+    width: 175px;
+    height: 70px;
+    background-color: #f7f7f7;
+}
+
+.pickup-item {
+    padding: 0 0 20px 40px;
+}
+
+.top_box {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.top_image {
+    margin-bottom: 40px;
+}
+
+.top_box p {
+    font-size: 20px;
+}
+
+h4 {
+    text-align: center;
+}
+
+.top_image_container {
+    position: absolute;
+    left: 13%;
+    top: 30%;
+}
+
+.top_text_container {
+    color: #f0f0f4;
+    position: absolute;
+    left: 53%;
+    top: 30%;
+}

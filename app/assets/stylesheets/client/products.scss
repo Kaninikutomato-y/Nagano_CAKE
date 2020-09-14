@@ -1,0 +1,106 @@
+// Place all the styles related to the public/products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.index-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.index-item {
+  padding: 0 0 20px 20px ;
+  transition:500ms all;
+  border-radius: 10%;
+}
+.index-item:hover{
+  transform:scale(1.1,1.1);
+  transition:500ms all;
+}
+.index-box {
+  width: 192px;
+  height: 90px;
+  background: #f7f7f7;
+}
+.index-name {
+  font-family:'Osaka';
+  font-size: 16px;
+  font-color: #333;
+  padding: 10px;
+  font-weight:bold;
+}
+.index-price {
+  font-color: #333;
+  padding: 0  10px 10px 10px;
+  font-family:'Tahoma';
+}
+.links {
+  text-decoration:none;
+}
+.soldout-f {
+  width:90px;
+  float:right;
+  margin:7px 0 5px 10px;
+  position:relative;
+}
+.soldout-c {
+  right: 0%;
+  padding:3px 12px;
+  font-weight:bold;
+  font-size:12px;
+  color:#fff;
+  background:#c00;
+  position:absolute;
+  -moz-box-shadow: 1px 1px 2px #333;
+  -webkit-box-shadow: 1px 1px 2px #333;
+  -moz-transform: rotate(347deg);
+  -webkit-transform: rotate(347deg);
+  -moz-transition: 0.4s ease-in-out;
+  -webkit-transition: 0.4s ease-in-out;
+}
+
+.cpi-h2 {
+  margin-left: 8%;
+}
+
+.cps-h2 {
+  margin-left: 20%
+}
+.cps-name {
+  font-size: 30px;
+}
+.cps-exp {
+  margin-top: 20px;
+}
+.cps-price {
+  margin-top: 10px;
+  font-size: 20px;
+}
+.cps-sale {
+  margin-top: 20px;
+  text-align: right;
+}
+.soldout-sf {
+  width:200px;
+  margin:7px 0 5px 10px;
+  position:relative;
+}
+.soldout-sc {
+  right: 0%;
+  padding:3px 12px;
+  font-weight:bold;
+  font-size:20px;
+  color:#fff;
+  background:#c00;
+  position:absolute;
+  -moz-box-shadow: 1px 1px 2px #333;
+  -webkit-box-shadow: 1px 1px 2px #333;
+  -moz-transition: 0.4s ease-in-out;
+  -webkit-transition: 0.4s ease-in-out;
+}
+.links {
+  color: #333333;
+  text-decoration: none;
+}
+.links:hover {
+  color: #333333;
+  text-decoration: none;
+}

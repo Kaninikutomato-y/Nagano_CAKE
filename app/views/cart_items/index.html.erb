@@ -1,2 +1,58 @@
-<h1>CartItems#index</h1>
-<p>Find me in app/views/cart_items/index.html.erb</p>
+<div class="container">
+	<div class="row">
+      <div class="col-mt-1">
+      	<h2>ショッピングカート</h2>
+  　　　　<div class="text-right">
+    　　　　<%= link_to 'カートを空にする', destroy_all_cart_items_path, method: :delete, class: "btn btn-danger btn-xs" %>
+  　　　　</div>
+
+　　　　　　<table class="table table-bordered">
+	　　　　　<thead>
+	　　　　　	<tr>
+			　　　<th>商品名</th>
+		　　　　　	<th style="width:15%">単価（税込）</th>
+		　　　　　	<th style="width:15%">数量</th>
+		　　　　　	<th>小計</th>
+			　　　　　<th colspan=""></th>
+		　　　　　</tr>
+	　　　　　</thead>
+　　         <% sum_all = 0 %>
+	         <% @cart_items.each do |cart_item| %>
+	         <tbody>
+	        	<tr style="border-bottom: solid 2px gray">
+	        		<td>
+					    <%= attachment_image_tag(cart_item.product, :image, :fill, 60, 60) %>
+					    <%= cart_item.product.name %>
+				    </td>
+			        <td>
+			        	<%= price_tax(cart_item.product.price).to_s(:delimited) %>
+
+			        </td>
+			        <td>
+					    <%= form_with model: cart_item, local: true do |f| %>
+					    <%= f.number_field :quantity, value: cart_item.quantity, min:1, max:99 %>
+					    <%= f.submit "変更", class: "btn btn-primary btn-xs"%>
+					　　　<% end %>
+	 			    </td>
+					<td><% sum_product = price_include_tax(cart_item.product.price ).to_i * cart_item.quantity %>
+						<%= sum_product.to_s(:delimited) %>
+						<% sum_all += sum_product.to_i %>
+					</td>
+					<td><%= link_to '削除', cart_item_path(cart_item), method: :delete, class: "btn btn-danger btn-xs" %></td>
+
+				</tr>
+			</tbody>
+			<% end %>
+
+		</table>
+
+
+	　　<%= link_to '買い物を続ける', root_path, class: "btn btn-primary btn-sm" %>
+	　　<div class="text-right">
+		   <p class="h4">合計金額：<%= sum_all.to_s(:delimited) %>円</p>
+		</div>
+		<div class="text-center">
+		 <%= link_to '情報入力に進む', new_order_path, class: "btn btn-success" %>
+	    </div>
+	</div>
+</div>

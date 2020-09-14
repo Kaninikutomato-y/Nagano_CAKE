@@ -1,2 +1,38 @@
-<h1>Admin::Products#index</h1>
-<p>Find me in app/views/admin/products/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-9">
+      <h2>商品一覧</h2>
+        <table class="api-table">
+          <thead>
+            <tr>
+              <th class="api-th">商品ID</th>
+              <th class="api-th">商品名</th>
+              <th class="api-th">税抜価格</th>
+              <th class="api-th">ジャンル</th>
+              <th class="api-th">販売ステータス</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @products.each do |product| %>
+              <tr>
+                <td class="api-td"><%= product.id %></td>
+                <td class="api-td"><%= link_to  product.name.truncate(15), admin_product_path(product) %></td>
+                <td class="api-td"><%= product.price.to_s(:delimited) %></td>
+                <td class="api-td"><%= product.genre.name %></td>
+                <td class="api-td"><% if product.sale_status == true %>販売中
+                    <% else %>売り切れ
+                    <% end %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <%= paginate @products %>
+    </div>
+    <div class="col-xs-2">
+      <%= link_to icon('fas', 'plus-circle fa-4x'), new_admin_product_path, class: "new-btn" %>
+    </div>
+  </div>
+</div>

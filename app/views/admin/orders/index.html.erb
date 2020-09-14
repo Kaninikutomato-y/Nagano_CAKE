@@ -1,2 +1,36 @@
-<h1>Admin::Orders#index</h1>
-<p>Find me in app/views/admin/orders/index.html.erb</p>
+<div class="row" style="margin-bottom: 20px">
+	<h2>注文履歴一覧</h2>
+</div>
+<div class="row">
+	<table style="text-align: center;  font-size: 16px;">
+		<thead  style="background-color: #FFF2DF;">
+			<tr style="border-bottom: solid 2px gray;">
+				<th class="col-lg-2" style="text-align: center;">購入日時</th>
+				<th class="col-lg-2" style="text-align: center;">購入者</th>
+				<th class="col-lg-2" style="text-align: center;">注文個数</th>
+				<th class="col-lg-2" style="text-align: center;">注文ステータス</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @orders.each do |order| %>
+			<tr style="border-bottom: solid 2px gray">
+				<td>
+					<%= link_to admin_order_path(order) do %>
+						<%= order.created_at.to_s(:datetime_jp2) %>
+					<% end %>
+				</td>
+				<td><%= order.name %></td>
+				<td>
+					<% sum_all = 0 %>
+					<% order.order_items.each do |order_item| %>
+					  <% sum_all += order_item.quantity %>
+					<% end %>
+					<%= sum_all %>
+				</td>
+				<td><%= order.status %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<%= paginate @orders %>
+</div>

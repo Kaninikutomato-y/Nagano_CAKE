@@ -1,0 +1,81 @@
+<div class="row">
+	<h2>注文情報確認</h2>
+</div>
+
+<%= form_with(model: @order, local: true) do |f| %>
+<div class="row" style="margin-top: 30px;">
+	<table class="col-lg-8">
+		<thead style="background-color: #FFF2DF; font-size: 16px; border: solid 2px gray;">
+			<tr>
+				<th>商品名</th>
+				<th style="text-align: center;">単価(税込)</th>
+				<th style="text-align: center;">数量</th>
+				<th style="text-align: center;">小計</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% sum_all = 0 %>
+			<% @cart_items.each do |cart_item| %>
+				<tr style="font-size: 18px; border: solid 2px gray;">
+					<td>
+						<%= link_to product_path(cart_item.product) do %>
+							<%= attachment_image_tag(cart_item.product, :image, :fill, 50, 50, fallback: "no_img.jpg") %>
+							<%= cart_item.product.name %>
+						<% end %>
+					</td>
+					<td style="text-align: center;"><%= price_tax(cart_item.product.price).to_s(:delimited) %>円</td>
+					<td style="text-align: center;"><%= cart_item.quantity %></td>
+					<td style="text-align: center;">
+						<% sum_product = price_tax(cart_item.product.price).to_i * cart_item.quantity %>
+						<%= sum_product.to_s(:delimited) %>円
+						<% sum_all += sum_product %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<div class="col-lg-1"></div>
+	<table class="order col-lg-3">
+		<tbody style="font-size: 18px; border: solid 2px gray;">
+			<tr>
+				<td class="col-lg-5" style="background-color: #FFF2DF; border-right: solid 2px gray;">送料</td>
+				<td class="col-lg-7" style="text-align: right;"><%= @order.freight.to_s(:delimited) %>円
+					<% @order.freight.to_i %></td>
+			</tr>
+			<tr>
+				<td class="col-lg-5" style="background-color: #FFF2DF; border-right: solid 2px gray;">商品合計</td>
+				<td class="col-lg-7" style="text-align: right;"><%= sum_all.to_s(:delimited) %><% sum_all.to_i %>円</td>
+			</tr>
+			<tr>
+				<td class="col-lg-5" style="background-color: #FFF2DF; border-right: solid 2px gray;">請求金額</td>
+				<% billed_amount = sum_all + @order.freight.to_i %>
+				<td class="col-lg-7" style="text-align: right;"><strong><%=billed_amount.to_s(:delimited) %>円</strong>
+				<% billed_amount.to_i %></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+	<div class="row" style="margin: 50px 0 30px 0;">
+		<strong style="font-size: 20px; padding-right: 20px">支払方法</strong>
+		<span style="font-size: 18px"><%= @order.pay_method %></span>
+	</div>
+	<div class="row" style="margin: 0 0 50px 0;">
+		<strong style="font-size: 20px; padding-right: 20px; vertical-align: top;">お届け先</strong>
+		<p style="font-size: 18px; display: inline-block">
+			<%= @order.postcode %>
+			<%= @order.address %><br>
+			<%= @order.name %>
+		</p>
+	</div>
+
+	<%= f.hidden_field :client_id, :value => current_client.id %>
+  	<%= f.hidden_field :postcode, :value => "#{@order.postcode}" %>
+  	<%= f.hidden_field :address, :value => "#{@order.address}" %>
+  	<%= f.hidden_field :name, :value => "#{@order.name}" %>
+  	<%= f.hidden_field :pay_method %>
+  	<%= f.hidden_field :billed_amount, :value => billed_amount.to_i %>
+<div class="row" style="text-align: center;">
+	<%= f.submit "購入を確定する", class: "btn-lg btn-success" %>
+</div>
+<% end %>

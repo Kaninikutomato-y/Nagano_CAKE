@@ -1,2 +1,59 @@
-<h1>Public::Orders#new</h1>
-<p>Find me in app/views/public/orders/new.html.erb</p>
+<div class="row">
+	<h2>注文情報入力</h2>
+</div>
+
+<%= form_with(model: @order, local: true, url: {action: 'confirm'}) do |f| %>
+	
+	<div class="field, row" style="padding-bottom: 20px; margin-top: 30px;">
+			<%= f.label :支払方法, style: "font-size: 20px; padding-bottom: 10px;" %><br>
+			<label class="" style="width:50%; padding: 0 0 5px 30px; font-size: 18px;">
+	        	<%= f.radio_button :pay_method, :クレジットカード, checked: "checked" %> クレジットカード
+	      	</label>
+	      	<label class="" style="width:50%; padding-left: 30px; font-size: 18px;">
+	        	<%= f.radio_button :pay_method, :銀行振込 %> 銀行振込
+	        </label>
+	</div>
+
+	<div class="field, row">
+		<%= f.label :お届け先, style: "font-size: 20px; padding-bottom: 10px;" %><br>
+		<label style="padding-left: 30px; font-size: 18px;">
+			<%= f.radio_button :add, 1, checked: true, checked: "checked" %> ご自身の住所
+		</label><br>
+		<div class="" style="padding: 0 0 20px 60px; font-size: 18px">
+			<%= @client.postcode %>
+			<%= @client.address %><br>
+			<%= @client.last_name %><%= @client.first_name %>
+		</div>
+
+		<label style="padding: 0 0 10px 30px; font-size: 18px;">
+			<%= f.radio_button :add, 2, style: "display: inline-block" %> 登録済住所から選択
+		</label><br>
+		<div class="" style="padding: 0 0 20px 60px; font-size: 18px;">
+			<%= f.collection_select :address, @client.deliveries, :id, :postcode_address_name, {class: "add-select"}%>
+		</div>
+
+		<label style="padding-left: 30px; font-size: 18px;">
+			<%= f.radio_button :add, 3 %> 新しいお届け先
+		</label>
+
+		<div class="" style="padding-left: 60px; margin-bottom: 50px; font-size: 18px">
+			<%= f.fields_for :new_add do |na| %>
+				<div>
+					<span style="font-size: 15px;">郵便番号（ハイフンなし）</span>
+					<%= na.text_field :postcode, class: 'form-controll', style: "margin-bottom: 10px; width: 150px;" %>
+				</div>
+				<div>
+					<span style="font-size: 15px;">住所</span>
+					<%= na.text_field :address, class: 'form-controll', style: "margin: 0 0 10px 150px; width: 500px" %>
+				</div>
+				<div>
+					<span style="font-size: 15px;">宛名</span>
+					<%= na.text_field :name, class: 'form-controll', style: "margin-left: 150px; width: 300px;" %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+		<div style="text-align: center">
+			<%= f.submit "確認画面へ進む", class: 'btn-lg btn-primary' %>
+		</div>
+<% end %>
