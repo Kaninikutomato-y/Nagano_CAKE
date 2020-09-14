@@ -1,29 +1,40 @@
 <h2>検索結果</h2>
 
 <% if @model == 'client' %>
-  <table border="1">
-    <thead>
-      <tr bgcolor="gray">
-        <th>会員ID</th>
-        <th>氏名</th>
-        <th>メールアドレス</th>
-        <th>ステータス</th>
-      </tr>
-    </thead>
-    <% @client.each do |client| %>
-      <tbody>
+
+<div class="container">
+  <div class="row">
+      <div class="col-xs-1">
+      </div>
+      <div class="col-xs-9">
+       <table class="api-table">
+      <thead>
         <tr>
-          <td><%= client.id %></td>
-          <td><%= link_to client.last_name, admin_client_path(client) %><%= client.first_name %></td>
-          <td><%= client.email %></td>
-          <td><% if client.is_deleted == true %>有効
-              <% else %>退会済み
-              <% end %>
-          </td>
+          <th class="api-th">会員ID</th>
+          <th class="api-th">氏名</th>
+          <th class="api-th">メールアドレス</th>
+          <th class="api-th">ステータス</th>
         </tr>
-      </tbody>
-    <% end %>
-  </table>
+      </thead>
+      <% @client.each do |client| %>
+        <tbody>
+          <tr>
+            <td class="api-td"><%= client.id %></td>
+            <td class="api-td"><%= link_to admin_client_path(client) do %>
+                <%= client.last_name %><%= client.first_name %>
+                <% end %></td>
+            <td class="api-td"><%= client.email %></td>
+            <td class="api-td"><% if client.is_deleted == true %>退会済み
+                <% else %>有効
+                <% end %></td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
+
+</div>
+
 <% end %>
 
 <% if @model == 'product' %>
