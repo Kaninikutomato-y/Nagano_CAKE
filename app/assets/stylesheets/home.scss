@@ -1,3 +1,28 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* スライドショーで使ったやつ１ */
+#container {
+  height: 350px;
+  width: 100%;
+  margin-bottom: 60px;
+  background-size:cover;
+}
+
+/* スライドショーで使ったやつ２ */
+.image1 {
+  background-image: url(red_blue_4.jpg);
+}
+.image2 {
+  background-image: url(cake_8.jpg);
+}
+.image3 {
+  background-image: url(cake_1.jpg);
+}
+.image4 {
+  background-image: url(cake_4.jpg);
+}
+.image5 {
+  background-image: url(cake_9.jpg);
+}
