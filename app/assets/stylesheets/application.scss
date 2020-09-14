@@ -35,7 +35,7 @@
 
 body {
     background-color: #eedeb0;
-    padding-top: 140px;
+    padding-top: 130px;
 }
 
 thead {
@@ -59,7 +59,7 @@ thead {
 }
 
 .flash {
-    margin-bottom: 35px;
+    margin-bottom: 20px;
     margin-right: 125px;
     text-align: center;
 }
@@ -110,8 +110,8 @@ td, th {
 }
 
 main {
-    padding-top: 50px;
-    padding-bottom: 40px;
+    padding-top: 20px;
+    padding-bottom: 50px;
     padding-left: 60px;
 }
 
@@ -126,27 +126,4 @@ footer p {
     text-align: center;
     margin-top: 10px;
     margin-right: 20px;
-}
-
-/* スライドショーで使ったやつ１ */
-#container {
-  height: 300px;
-  margin-bottom: 40px;
-}
-
-/* スライドショーで使ったやつ２ */
-.image1 {
-  background-image: url(baked_2.jpg);
-}
-.image2 {
-  background-image: url(cake_8.jpg);
-}
-.image3 {
-  background-image: url(cake_1.jpg);
-}
-.image4 {
-  background-image: url(cake_4.jpg);
-}
-.image5 {
-  background-image: url(cake_9.jpg);
 }

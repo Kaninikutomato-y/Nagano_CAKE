@@ -1,6 +1,36 @@
 <div class="container">
 	<div class="row">
-	    <div class="pickup col-xs-3">
+
+	    <div class="slide_box col-xs-11">
+	    	<div id="container">
+		    	<div id="theTarget">
+			        <div class="image1"></div>
+			        <div class="image2"></div>
+			        <div class="image3"></div>
+			        <div class="image4"></div>
+			        <div class="image5"></div>
+		    	</div>
+		    	<div class="top_image_container">
+		    		<%= image_tag('NCL_main.png', style: "width: 330px;") %>
+		    	</div>
+		    	<div class="top_text_container">
+			    	<p class="h4">ようこそNaganoCakeへ！<br>
+			    		このサイトは、ケーキ販売のECサイトになります。<br>
+			    		会員でない方も商品の閲覧はできますが、<br>
+			    		購入には会員登録が必要になります。
+			    	</p>
+			    </div>
+		    </div>
+		</div>
+    </div>
+
+	<div class="row">
+    	<div class="col-xs-2">
+    		<div class="genre_search">
+	    		<%= render 'client/products/list', genres:@genres %>
+	    	</div>
+	    </div>
+    	<div class="pickup col-xs-3">
 	    	<h1 class="h1_pickup">Pick UP</h1>
 	    	<% @products.first(4).each do |product| %>
 	    		<%= link_to product_path(product) do %>
@@ -11,37 +41,29 @@
 	    	<% end %>
 	    	<div class="more"><%= link_to 'もっと見る ＞＞', products_path %></div>
 	    </div>
-
-	    <div class="col-xs-8">
-	    	<div id="container">
-		    	<div id="theTarget">
-			        <div class="image1"></div>
-			        <div class="image2"></div>
-			        <div class="image3"></div>
-			        <div class="image4"></div>
-			        <div class="image5"></div>
-		    	</div>
-		    </div>
-		</div>
-    </div>
-
-	<div class="row">
-    	<div class="col-xs-3">
-    		<div class="genre_search">
-	    		<%= render 'client/products/list', genres:@genres %>
-	    	</div>
-	    </div>
-    	<div class="col-xs-offset-2 col-xs-7">
-    		<div class="top_box">
-		    	<div class="top_image">
-		    		<%= image_tag('NCL-color.png', style: "width: 380px;") %>
-		    	</div>
-		    	<p>ようこそNaganoCakeへ！<br>
-		    		このサイトは、ケーキ販売のECサイトになります。<br>
-		    		会員でない方も商品の閲覧はできますが、<br>
-		    		購入には会員登録が必要になります。
-		    	</p>
-		    </div>
-	    </div>
+	    <div class="pickup_2 col-xs-5">
+	    	<% @products.first(4).each do |product| %>
+    			<%= link_to(product_path(product), class: 'links') do %>
+      				<div class="pickup-item">
+        				<div class="index-img">
+          					<%= attachment_image_tag product, :image ,style: "width: 175px; height: 105px;" %>
+       					</div>
+        				<div class="pickup-box">
+          					<div class="index-name">
+            					<%= product.name.truncate(19) %>
+         					</div>
+          					<div class="index-price">
+          						¥<%= product.price.to_s(:delimited) %>
+            					<% if product.sale_status == false %>
+              						<div class ="soldout-f">
+                						<p class="soldout-c">SOLD OUT</p>
+              						</div>
+            					<% end %>
+          					</div>
+        				</div>
+      				</div>
+    			<% end %>
+  			<% end %>
+  		</div>
 	</div>
 </div>

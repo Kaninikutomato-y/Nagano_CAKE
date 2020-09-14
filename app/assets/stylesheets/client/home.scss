@@ -13,7 +13,7 @@
 
 .client_about {
 	text-align: center;
-    padding-right: 100px;
+    padding-right: 140px;
 }
 
 .about_image {
@@ -49,20 +49,11 @@
 
 /* home/top */
 
-.pickup {
-    height: 300px;
-}
-
-.h1_pickup {
-    margin-bottom: 18px;
-    border-bottom: 1px solid gray;
-    text-align: center;
-}
-
 .home-index-name {
-    margin-bottom: 20px;
-    padding-top: 10px;
+    margin-bottom: 23px;
+    padding-top: 12px;
     color: black;
+    font-size: 16px;
 }
 
 .home-index-name:hover {
@@ -72,10 +63,36 @@
 .more {
     color: black;
     text-align: right;
+    padding-top: 20px;
 }
 
 .more:hover {
     color: black;
+}
+
+.pickup {
+    margin-left: 55px;
+}
+
+.h1_pickup {
+    margin-bottom: 20px;
+    border-bottom: 1px solid gray;
+    text-align: center;
+}
+
+.pickup_2 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pickup-box {
+    width: 175px;
+    height: 70px;
+    background-color: #f7f7f7;
+}
+
+.pickup-item {
+    padding: 0 0 20px 40px;
 }
 
 .top_box {
@@ -95,6 +112,15 @@ h4 {
     text-align: center;
 }
 
-.genre_search {
-    margin-top: 50px;
+.top_image_container {
+    position: absolute;
+    left: 13%;
+    top: 30%;
+}
+
+.top_text_container {
+    color: #f0f0f4;
+    position: absolute;
+    left: 53%;
+    top: 30%;
 }
