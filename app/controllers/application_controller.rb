@@ -34,11 +34,11 @@ class ApplicationController < ActionController::Base
 			end
 		end
 
-		def after_sign_out_path_for(resource)
-			if  current_admin
-				new_admin_session_path
-			else
+		def after_sign_out_path_for(resource_or_scope)
+			if  current_client
 				root_path
+			else
+				new_admin_session_path
 			end
 
 		end
