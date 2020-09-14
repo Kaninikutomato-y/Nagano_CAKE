@@ -12,7 +12,7 @@ class Admin::GenresController < ApplicationController
     if @genre.save
       redirect_to request.referer
     else
-      @genres = Genre.all
+      @genres = Genre.all.page(params[:page]).per(8)
       render "index"
     end
   end
